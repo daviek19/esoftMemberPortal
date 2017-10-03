@@ -1,0 +1,16 @@
+﻿@model Nullable<DateTime>
+
+@{
+    DateTime dt = DateTime.Now;
+    if (Model != null)
+    {
+        dt = (System.DateTime)Model;
+
+    }
+    @*@Html.TextBox("", String.Format("{0:d}", dt.ToShortDateString()), new { @class = "datefield", type = "date" })*@
+    @Html.TextBox("", "{0:yyyy-MM-dd}", new { @class = "datefield", type = "date" })
+    
+
+} 
+
+@*@Html.TextBoxFor(m => m.MyDate, "{0:yyyy-MM-dd}", new { @type = "date" })*@

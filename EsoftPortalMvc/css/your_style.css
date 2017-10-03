@@ -1,0 +1,9 @@
+.control-label {
+    font-weight: bold;
+    text-align: right;
+}
+
+.row-offset {
+    margin-bottom: 10px;
+}
+

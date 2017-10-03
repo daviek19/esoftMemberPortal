@@ -1,0 +1,212 @@
+﻿@model EsoftPortalMvc.Models.LoginViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+    <meta charset="utf-8">
+    <title> Esoft Financials</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- #CSS Links -->
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/font-awesome.min.css">
+
+    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-skins.min.css">
+
+    <!-- SmartAdmin RTL Support -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/smartadmin-rtl.min.css">
+
+    <!-- We recommend you use "your_style.css" to override SmartAdmin
+         specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+    <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/css/demo.min.css">
+
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
+
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+    <!-- #APP SCREEN / ICONS -->
+    <!-- Specifying a Webpage Icon for Web Clip
+         Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/splash/touch-icon-ipad-retina.png">
+
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="~/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="~/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="~/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+</head>
+
+<body class="animated fadeInDown">
+
+    <header id="header">
+
+        <div id="logo-group">
+            <span id="logo" style="width:400px;">
+                <img src="~/img/logo.png" alt="Sacco Logo">
+                <b>
+                    @Html.DisplayFor(model => model.OrganisationName)
+                </b>
+            </span>
+        </div>
+    </header>
+
+    <div id="main" role="main">
+
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container">
+
+            <div class="row animated slideInLeft">
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-6 hidden-xs hidden-sm">
+                    <h3>&nbsp;</h3>
+                    <div class="hero" style="height:230px;">
+                        <div class="pull-left login-desc-box-l">
+                            <img src="~/img/esoft-logo.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-6">
+                    <div class=" well no-padding">
+                        <form action="@Url.Action("login", "account")" method="POST" id="login-form" class="smart-form client-form">
+                            <header>
+                                <b>Sign In</b>
+                            </header>
+
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationBootstrap()
+                            <fieldset>
+                                <section>
+                                    <label class="label "><b>Username</b></label>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        @Html.EditorFor(model => model.Email)
+
+                                        <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please Enter Username</b>
+                                    </label>
+                                </section>
+                                <section>
+                                    <label class="label"><b>Password</b></label>
+                                    <label class="input">
+
+                                        <i class="icon-append fa fa-lock"></i>
+                                        @Html.TextBoxFor(model => model.Password, new { @type = "password" })
+                                        <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
+                                    </label>
+
+                                </section>
+                                @if (TempData["Message"] != null)
+                                {
+                                    <section>
+                                        <div class="form-group row alert alert-danger errbox" style="margin: 10px 0;">
+                                            <span id="msg">@TempData["Message"]</span>
+                                        </div>
+                                    </section>
+                                }
+                            </fieldset>
+
+                            <footer>
+                                
+                                <a href="@Url.Action("Register")" class="btn btn-primary">Register</a>
+
+                                <button type="submit" class="btn btn-primary">
+                                    Sign in
+                                </button>
+
+                            </footer>
+                        </form>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:35px;">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h5 class="about-heading">ESoft Financials</h5>
+                    <p>
+                        Core Banking Software for Saccos.
+                    </p>
+
+
+                    Grow and thrive with technology that helps lower costs and increase returns.
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h5 class="about-heading">Contact Us</h5>
+                    Tel: +254 788 510667,+254 723 304718</br>
+                    Email: support@ecomtech.co.ke</br>
+                    Facebook:<a href="https://www.facebook.com/Ecom-Technologies-951483194921017/">Facebook</a>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h5 class="about-heading">Address</h5>
+                    Ecom Technologies Ltd</br>
+                    301 Third Floor NACICO Plaza, Landhies Road</br>
+                    Postal Address: P. O  Box 1358 -00100, Nairobi, Kenya.</br>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--================================================== -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script> if (!window.jQuery) { document.write('<script src="~/Scripts/libs/jquery-2.1.1.min.js"><\/script>'); } </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script> if (!window.jQuery.ui) { document.write('<script src="~/Scripts/libs/jquery-ui-1.10.3.min.js"><\/script>'); } </script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/js/app.config.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+    <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+    <!-- BOOTSTRAP JS -->
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- JQUERY VALIDATE -->
+    <script src="~/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="~/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!--[if IE 8]>
+
+        <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+    <![endif]-->
+    <!-- MAIN APP JS FILE -->
+    <script src="~/js/app.min.js"></script>
+
+  
+
+</body>
+</html>

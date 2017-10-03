@@ -1,6 +1,0 @@
-﻿@using EstateManagementMvc.Services.Common
-@if (ViewData.ContainsKey("Toastr"))
-{
-    Toastr toastr = ViewData["Toastr"] as Toastr;
-    @ToastrBuilder.ShowToastMessages(toastr);
-}
