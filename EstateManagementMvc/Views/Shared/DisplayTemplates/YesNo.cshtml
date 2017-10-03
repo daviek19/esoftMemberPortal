@@ -1,0 +1,19 @@
+﻿@model System.Boolean?
+
+@if (Model.HasValue)
+{
+
+    if (Model.Value)
+    {
+        <text> Yes </text>
+    }
+
+    else
+    {
+        <text> No </text>
+    }
+}
+else
+{
+   <text> No </text>
+}

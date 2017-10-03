@@ -1,0 +1,20 @@
+﻿
+<!-- User info -->
+<div class="login-info">
+    <span>
+        <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+            @*<img src=@EstateManagementMvc.Services.Common.UserSession.Current.UserImage alt ="me" class="online" />*@
+            <img src="http://192.168.0.6/avatars/@(EstateManagementMvc.Services.Common.UserSession.Current.userDetails.LoginCode).png" alt="me" class="online" />
+            @*<img src="~/img/avatars/sunny.png" alt="me" class="online" />*@
+            <span>
+                @EstateManagementMvc.Services.Common.UserSession.Current.userDetails.LoginName
+            
+            </span>
+            <i class="fa fa-angle-down"></i>
+        </a>
+
+    </span>
+</div>
+<!-- end user info -->

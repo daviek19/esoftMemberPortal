@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EsoftEstateModelStoreContainer" CdmEntityContainer="Esoft_EstateEntities">
+    <EntitySetMapping Name="Company">
+      <EntityTypeMapping TypeName="EsoftEstateModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+          <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+          <ScalarProperty Name="CompanyPin" ColumnName="CompanyPin" />
+          <ScalarProperty Name="Excise_Duty_Rate" ColumnName="Excise_Duty_Rate" />
+          <ScalarProperty Name="StampDuty" ColumnName="StampDuty" />
+          <ScalarProperty Name="WithholdingtaxRate" ColumnName="WithholdingtaxRate" />
+          <ScalarProperty Name="WithholdingtaxAccount" ColumnName="WithholdingtaxAccount" />
+          <ScalarProperty Name="DisplayMessage" ColumnName="DisplayMessage" />
+          <ScalarProperty Name="Surplus_Loss_Account" ColumnName="Surplus_Loss_Account" />
+          <ScalarProperty Name="Teller_Slip_FooterText" ColumnName="Teller_Slip_FooterText" />
+          <ScalarProperty Name="System_Lock_Out_time" ColumnName="System_Lock_Out_time" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectSettings">
+      <EntityTypeMapping TypeName="EsoftEstateModel.ProjectSettings">
+        <MappingFragment StoreEntitySet="ProjectSettings">
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trail">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_trail">
+        <MappingFragment StoreEntitySet="tbl_trail">
+          <ScalarProperty Name="recno" ColumnName="recno" />
+          <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="TrAmount" ColumnName="TrAmount" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="PostingDocid" ColumnName="PostingDocid" />
+          <ScalarProperty Name="MachineDate" ColumnName="MachineDate" />
+          <ScalarProperty Name="tbl_trailID" ColumnName="tbl_trailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_UserRoles">
+      <EntityTypeMapping TypeName="EsoftEstateModel.Tbl_UserRoles">
+        <MappingFragment StoreEntitySet="Tbl_UserRoles">
+          <ScalarProperty Name="recno" ColumnName="recno" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleRights" ColumnName="RoleRights" />
+          <ScalarProperty Name="Tbl_UserRolesID" ColumnName="Tbl_UserRolesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_users">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_users">
+        <MappingFragment StoreEntitySet="tbl_users">
+          <ScalarProperty Name="UserBranch" ColumnName="UserBranch" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+          <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="LoginTime_From" ColumnName="LoginTime_From" />
+          <ScalarProperty Name="LoginTime_To" ColumnName="LoginTime_To" />
+          <ScalarProperty Name="LoginMachine" ColumnName="LoginMachine" />
+          <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+          <ScalarProperty Name="AccountDisabled" ColumnName="AccountDisabled" />
+          <ScalarProperty Name="AccessRights" ColumnName="AccessRights" />
+          <ScalarProperty Name="PasswordExpiry" ColumnName="PasswordExpiry" />
+          <ScalarProperty Name="Login_Expiry" ColumnName="Login_Expiry" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="EmploymentNumber" ColumnName="EmploymentNumber" />
+          <ScalarProperty Name="OtherUserRoles" ColumnName="OtherUserRoles" />
+          <ScalarProperty Name="tbl_usersID" ColumnName="tbl_usersID" />
+          <ScalarProperty Name="WebPassword" ColumnName="WebPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Blocks">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Blocks">
+        <MappingFragment StoreEntitySet="tbl_Blocks">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="BlockName" ColumnName="BlockName" />
+          <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Blocks_Units">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Blocks_Units">
+        <MappingFragment StoreEntitySet="tbl_Blocks_Units">
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Buyers">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Buyers">
+        <MappingFragment StoreEntitySet="tbl_Buyers">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_NavigationMenus">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_NavigationMenus">
+        <MappingFragment StoreEntitySet="tbl_NavigationMenus">
+          <ScalarProperty Name="Report" ColumnName="Report" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_PasswordSettings">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PasswordSettings">
+        <MappingFragment StoreEntitySet="tbl_PasswordSettings">
+          <ScalarProperty Name="tbl_PasswordSettingsID" ColumnName="tbl_PasswordSettingsID" />
+          <ScalarProperty Name="MinimumPasswordLength" ColumnName="MinimumPasswordLength" />
+          <ScalarProperty Name="ReusePasswordAfter" ColumnName="ReusePasswordAfter" />
+          <ScalarProperty Name="AlphaNumeric" ColumnName="AlphaNumeric" />
+          <ScalarProperty Name="PasswordExpiresAfter" ColumnName="PasswordExpiresAfter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_TellerAccounts">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_TellerAccounts">
+        <MappingFragment StoreEntitySet="tbl_TellerAccounts">
+          <ScalarProperty Name="tbl_TellerAccountsID" ColumnName="tbl_TellerAccountsID" />
+          <ScalarProperty Name="TellerAccountNo" ColumnName="TellerAccountNo" />
+          <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_PasswordHistory">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PasswordHistory">
+        <MappingFragment StoreEntitySet="tbl_PasswordHistory">
+          <ScalarProperty Name="PassValue" ColumnName="PassValue" />
+          <ScalarProperty Name="TrxDate" ColumnName="TrxDate" />
+          <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+          <ScalarProperty Name="recno" ColumnName="recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BranchSettings">
+      <EntityTypeMapping TypeName="EsoftEstateModel.BranchSettings">
+        <MappingFragment StoreEntitySet="BranchSettings">
+          <ScalarProperty Name="BranchSettingsId" ColumnName="BranchSettingsId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_GlAccounts">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_GlAccounts">
+        <MappingFragment StoreEntitySet="tbl_GlAccounts">
+          <ScalarProperty Name="tbl_GlAccountsID" ColumnName="tbl_GlAccountsID" />
+          <ScalarProperty Name="Account_Blocked" ColumnName="Account_Blocked" />
+          <ScalarProperty Name="GlName" ColumnName="GlName" />
+          <ScalarProperty Name="GlAccountNo" ColumnName="GlAccountNo" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Ledger">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Ledger">
+        <MappingFragment StoreEntitySet="tbl_Ledger">
+          <ScalarProperty Name="tbl_ledgerID" ColumnName="tbl_ledgerID" />
+          <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+          <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+          <ScalarProperty Name="DebitAmount" ColumnName="DebitAmount" />
+          <ScalarProperty Name="Machine" ColumnName="Machine" />
+          <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+          <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+          <ScalarProperty Name="Docid" ColumnName="Docid" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="GlContra" ColumnName="GlContra" />
+          <ScalarProperty Name="GlAccountNo" ColumnName="GlAccountNo" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ModuleNames">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_ModuleNames">
+        <MappingFragment StoreEntitySet="tbl_ModuleNames">
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="RECNO" ColumnName="RECNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_PaymentModes">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PaymentModes">
+        <MappingFragment StoreEntitySet="tbl_PaymentModes">
+          <ScalarProperty Name="tbl_PaymentID" ColumnName="tbl_PaymentID" />
+          <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+          <ScalarProperty Name="Recno" ColumnName="Recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_PostingReferences">
+      <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PostingReferences">
+        <MappingFragment StoreEntitySet="tbl_PostingReferences">
+          <ScalarProperty Name="PostingName" ColumnName="PostingName" />
+          <ScalarProperty Name="PostingId" ColumnName="PostingId" />
+          <ScalarProperty Name="recno" ColumnName="recno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

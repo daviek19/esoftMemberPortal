@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EsoftEstateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BranchSettings">
+          <Key>
+            <PropertyRef Name="BranchCode" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="BranchSettingsId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyEmail" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyTelephone" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyPin" Type="varchar" MaxLength="50" />
+          <Property Name="Excise_Duty_Rate" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="StampDuty" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="WithholdingtaxRate" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="WithholdingtaxAccount" Type="char" MaxLength="20" />
+          <Property Name="DisplayMessage" Type="varchar" MaxLength="200" />
+          <Property Name="Surplus_Loss_Account" Type="varchar" MaxLength="20" />
+          <Property Name="Teller_Slip_FooterText" Type="varchar" MaxLength="80" />
+          <Property Name="System_Lock_Out_time" Type="int" />
+          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectSettings">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="50" />
+          <Property Name="ProjectId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Blocks">
+          <Key>
+            <PropertyRef Name="BlockId" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlockId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BlockName" Type="varchar" MaxLength="50" />
+          <Property Name="ProjectId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Blocks_Units">
+          <Key>
+            <PropertyRef Name="UnitId" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UnitName" Type="varchar" MaxLength="50" />
+          <Property Name="BlockId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UnitPrice" Type="numeric" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_Buyers">
+          <Key>
+            <PropertyRef Name="BuyerId" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BuyerName" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="20" />
+          <Property Name="IdType" Type="char" MaxLength="1" />
+          <Property Name="Nationality" Type="char" MaxLength="20" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_GlAccounts">
+          <Key>
+            <PropertyRef Name="tbl_GlAccountsID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GlAccountNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GlName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Account_Blocked" Type="bit" />
+          <Property Name="tbl_GlAccountsID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Ledger">
+          <Key>
+            <PropertyRef Name="tbl_ledgerID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GlAccountNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="GlContra" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="Narration" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Docid" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="ReferenceNo" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="LoginCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Machine" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DebitAmount" Type="numeric" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CreditAmount" Type="numeric" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="AuditTime" Type="datetime" Nullable="false" />
+          <Property Name="tbl_ledgerID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ModuleNames">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="RECNO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleId" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_NavigationMenus">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Controller" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Area" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="ModuleId" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Report" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Esoft_Estate.dbo.tbl_PasswordHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_PasswordHistory">
+          <Key>
+            <PropertyRef Name="recno" />
+            <PropertyRef Name="LoginCode" />
+            <PropertyRef Name="TrxDate" />
+          </Key>
+          <Property Name="recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="TrxDate" Type="datetime" Nullable="false" />
+          <Property Name="PassValue" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_PasswordSettings">
+          <Key>
+            <PropertyRef Name="tbl_PasswordSettingsID" />
+          </Key>
+          <Property Name="PasswordExpiresAfter" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="AlphaNumeric" Type="bit" Nullable="false" />
+          <Property Name="ReusePasswordAfter" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="MinimumPasswordLength" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="tbl_PasswordSettingsID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_PaymentModes">
+          <Key>
+            <PropertyRef Name="tbl_PaymentID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tbl_PaymentID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_PostingReferences">
+          <Key>
+            <PropertyRef Name="PostingId" />
+          </Key>
+          <Property Name="recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostingId" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PostingName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_TellerAccounts">
+          <Key>
+            <PropertyRef Name="tbl_TellerAccountsID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="TellerAccountNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tbl_TellerAccountsID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_trail">
+          <Key>
+            <PropertyRef Name="tbl_trailID" />
+          </Key>
+          <Property Name="recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Activity" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="ActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TrAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PostingDocid" Type="varchar" MaxLength="6" />
+          <Property Name="MachineDate" Type="datetime" Nullable="false" />
+          <Property Name="tbl_trailID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_UserRoles">
+          <Key>
+            <PropertyRef Name="Tbl_UserRolesID" />
+          </Key>
+          <Property Name="recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RoleRights" Type="varchar(max)" Nullable="false" />
+          <Property Name="Tbl_UserRolesID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="tbl_usersID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="LoginName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoginTime_From" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LoginTime_To" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LoginMachine" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LoginPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountDisabled" Type="bit" Nullable="false" />
+          <Property Name="AccessRights" Type="varchar" MaxLength="8000" />
+          <Property Name="PasswordExpiry" Type="datetime" />
+          <Property Name="Login_Expiry" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UserRole" Type="varchar" MaxLength="3" />
+          <Property Name="EmploymentNumber" Type="varchar" MaxLength="10" />
+          <Property Name="OtherUserRoles" Type="varchar" MaxLength="50" />
+          <Property Name="tbl_usersID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WebPassword" Type="varchar" MaxLength="100" />
+          <Property Name="UserBranch" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EsoftEstateModelStoreContainer">
+          <EntitySet Name="BranchSettings" EntityType="Self.BranchSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectSettings" EntityType="Self.ProjectSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Blocks" EntityType="Self.tbl_Blocks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Blocks_Units" EntityType="Self.tbl_Blocks_Units" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Buyers" EntityType="Self.tbl_Buyers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GlAccounts" EntityType="Self.tbl_GlAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Ledger" EntityType="Self.tbl_Ledger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ModuleNames" EntityType="Self.tbl_ModuleNames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NavigationMenus" EntityType="Self.tbl_NavigationMenus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PasswordSettings" EntityType="Self.tbl_PasswordSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PaymentModes" EntityType="Self.tbl_PaymentModes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PostingReferences" EntityType="Self.tbl_PostingReferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TellerAccounts" EntityType="Self.tbl_TellerAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_trail" EntityType="Self.tbl_trail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_UserRoles" EntityType="Self.Tbl_UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PasswordHistory" EntityType="Self.tbl_PasswordHistory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_PasswordHistory].[recno] AS [recno], 
+    [tbl_PasswordHistory].[LoginCode] AS [LoginCode], 
+    [tbl_PasswordHistory].[TrxDate] AS [TrxDate], 
+    [tbl_PasswordHistory].[PassValue] AS [PassValue]
+    FROM [dbo].[tbl_PasswordHistory] AS [tbl_PasswordHistory]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EsoftEstateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyPin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Excise_Duty_Rate" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="StampDuty" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="WithholdingtaxRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WithholdingtaxAccount" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="DisplayMessage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Surplus_Loss_Account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Teller_Slip_FooterText" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="System_Lock_Out_time" Type="Int32" />
+          <Property Name="CompanyID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectSettings">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_trail">
+          <Key>
+            <PropertyRef Name="tbl_trailID" />
+          </Key>
+          <Property Name="recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Activity" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TrAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostingDocid" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MachineDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tbl_trailID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_UserRoles">
+          <Key>
+            <PropertyRef Name="Tbl_UserRolesID" />
+          </Key>
+          <Property Name="recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleRights" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tbl_UserRolesID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="tbl_usersID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LoginName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginTime_From" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginTime_To" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginMachine" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountDisabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessRights" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordExpiry" Type="DateTime" Precision="3" />
+          <Property Name="Login_Expiry" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserRole" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="EmploymentNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OtherUserRoles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tbl_usersID" Type="Guid" Nullable="false" />
+          <Property Name="WebPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserBranch" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Esoft_EstateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="ProjectSettings" EntityType="Self.ProjectSettings" />
+          <EntitySet Name="tbl_trail" EntityType="Self.tbl_trail" />
+          <EntitySet Name="Tbl_UserRoles" EntityType="Self.Tbl_UserRoles" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+          <EntitySet Name="tbl_Blocks" EntityType="EsoftEstateModel.tbl_Blocks" />
+          <EntitySet Name="tbl_Blocks_Units" EntityType="EsoftEstateModel.tbl_Blocks_Units" />
+          <EntitySet Name="tbl_Buyers" EntityType="EsoftEstateModel.tbl_Buyers" />
+          <EntitySet Name="tbl_NavigationMenus" EntityType="EsoftEstateModel.tbl_NavigationMenus" />
+          <EntitySet Name="tbl_PasswordSettings" EntityType="EsoftEstateModel.tbl_PasswordSettings" />
+          <EntitySet Name="tbl_TellerAccounts" EntityType="EsoftEstateModel.tbl_TellerAccounts" />
+          <EntitySet Name="tbl_PasswordHistory" EntityType="EsoftEstateModel.tbl_PasswordHistory" />
+          <EntitySet Name="BranchSettings" EntityType="EsoftEstateModel.BranchSettings" />
+          <EntitySet Name="tbl_GlAccounts" EntityType="EsoftEstateModel.tbl_GlAccounts" />
+          <EntitySet Name="tbl_Ledger" EntityType="EsoftEstateModel.tbl_Ledger" />
+          <EntitySet Name="tbl_ModuleNames" EntityType="EsoftEstateModel.tbl_ModuleNames" />
+          <EntitySet Name="tbl_PaymentModes" EntityType="EsoftEstateModel.tbl_PaymentModes" />
+          <EntitySet Name="tbl_PostingReferences" EntityType="EsoftEstateModel.tbl_PostingReferences" />
+        </EntityContainer>
+        <EntityType Name="tbl_Blocks">
+          <Key>
+            <PropertyRef Name="BlockId" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlockId" Type="Guid" Nullable="false" />
+          <Property Name="BlockName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Blocks_Units">
+          <Key>
+            <PropertyRef Name="UnitId" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitId" Type="Guid" Nullable="false" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BlockId" Type="Guid" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_Buyers">
+          <Key>
+            <PropertyRef Name="BuyerId" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerId" Type="Guid" Nullable="false" />
+          <Property Name="BuyerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_NavigationMenus">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Controller" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="ModuleId" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Report" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_PasswordSettings">
+          <Key>
+            <PropertyRef Name="tbl_PasswordSettingsID" />
+          </Key>
+          <Property Name="PasswordExpiresAfter" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="AlphaNumeric" Type="Boolean" Nullable="false" />
+          <Property Name="ReusePasswordAfter" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="MinimumPasswordLength" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="tbl_PasswordSettingsID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_TellerAccounts">
+          <Key>
+            <PropertyRef Name="tbl_TellerAccountsID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TellerAccountNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tbl_TellerAccountsID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_PasswordHistory">
+          <Key>
+            <PropertyRef Name="recno" />
+            <PropertyRef Name="LoginCode" />
+            <PropertyRef Name="TrxDate" />
+          </Key>
+          <Property Name="recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="TrxDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PassValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BranchSettings">
+          <Key>
+            <PropertyRef Name="BranchCode" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchSettingsId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_GlAccounts">
+          <Key>
+            <PropertyRef Name="tbl_GlAccountsID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GlAccountNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GlName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Account_Blocked" Type="Boolean" />
+          <Property Name="tbl_GlAccountsID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Ledger">
+          <Key>
+            <PropertyRef Name="tbl_ledgerID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GlAccountNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GlContra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Narration" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Docid" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceNo" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="LoginCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Machine" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DebitAmount" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="CreditAmount" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="AuditTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tbl_ledgerID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ModuleNames">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="RECNO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_PaymentModes">
+          <Key>
+            <PropertyRef Name="tbl_PaymentID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tbl_PaymentID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_PostingReferences">
+          <Key>
+            <PropertyRef Name="PostingId" />
+          </Key>
+          <Property Name="recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostingId" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PostingName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EsoftEstateModelStoreContainer" CdmEntityContainer="Esoft_EstateEntities">
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="EsoftEstateModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+                <ScalarProperty Name="CompanyPin" ColumnName="CompanyPin" />
+                <ScalarProperty Name="Excise_Duty_Rate" ColumnName="Excise_Duty_Rate" />
+                <ScalarProperty Name="StampDuty" ColumnName="StampDuty" />
+                <ScalarProperty Name="WithholdingtaxRate" ColumnName="WithholdingtaxRate" />
+                <ScalarProperty Name="WithholdingtaxAccount" ColumnName="WithholdingtaxAccount" />
+                <ScalarProperty Name="DisplayMessage" ColumnName="DisplayMessage" />
+                <ScalarProperty Name="Surplus_Loss_Account" ColumnName="Surplus_Loss_Account" />
+                <ScalarProperty Name="Teller_Slip_FooterText" ColumnName="Teller_Slip_FooterText" />
+                <ScalarProperty Name="System_Lock_Out_time" ColumnName="System_Lock_Out_time" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectSettings">
+            <EntityTypeMapping TypeName="EsoftEstateModel.ProjectSettings">
+              <MappingFragment StoreEntitySet="ProjectSettings">
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_trail">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_trail">
+              <MappingFragment StoreEntitySet="tbl_trail">
+                <ScalarProperty Name="recno" ColumnName="recno" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="TrAmount" ColumnName="TrAmount" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="PostingDocid" ColumnName="PostingDocid" />
+                <ScalarProperty Name="MachineDate" ColumnName="MachineDate" />
+                <ScalarProperty Name="tbl_trailID" ColumnName="tbl_trailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_UserRoles">
+            <EntityTypeMapping TypeName="EsoftEstateModel.Tbl_UserRoles">
+              <MappingFragment StoreEntitySet="Tbl_UserRoles">
+                <ScalarProperty Name="recno" ColumnName="recno" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleRights" ColumnName="RoleRights" />
+                <ScalarProperty Name="Tbl_UserRolesID" ColumnName="Tbl_UserRolesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_users">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_users">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="UserBranch" ColumnName="UserBranch" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="LoginTime_From" ColumnName="LoginTime_From" />
+                <ScalarProperty Name="LoginTime_To" ColumnName="LoginTime_To" />
+                <ScalarProperty Name="LoginMachine" ColumnName="LoginMachine" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="AccountDisabled" ColumnName="AccountDisabled" />
+                <ScalarProperty Name="AccessRights" ColumnName="AccessRights" />
+                <ScalarProperty Name="PasswordExpiry" ColumnName="PasswordExpiry" />
+                <ScalarProperty Name="Login_Expiry" ColumnName="Login_Expiry" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="EmploymentNumber" ColumnName="EmploymentNumber" />
+                <ScalarProperty Name="OtherUserRoles" ColumnName="OtherUserRoles" />
+                <ScalarProperty Name="tbl_usersID" ColumnName="tbl_usersID" />
+                <ScalarProperty Name="WebPassword" ColumnName="WebPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Blocks">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Blocks">
+              <MappingFragment StoreEntitySet="tbl_Blocks">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="BlockName" ColumnName="BlockName" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Blocks_Units">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Blocks_Units">
+              <MappingFragment StoreEntitySet="tbl_Blocks_Units">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Buyers">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Buyers">
+              <MappingFragment StoreEntitySet="tbl_Buyers">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NavigationMenus">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_NavigationMenus">
+              <MappingFragment StoreEntitySet="tbl_NavigationMenus">
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PasswordSettings">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PasswordSettings">
+              <MappingFragment StoreEntitySet="tbl_PasswordSettings">
+                <ScalarProperty Name="tbl_PasswordSettingsID" ColumnName="tbl_PasswordSettingsID" />
+                <ScalarProperty Name="MinimumPasswordLength" ColumnName="MinimumPasswordLength" />
+                <ScalarProperty Name="ReusePasswordAfter" ColumnName="ReusePasswordAfter" />
+                <ScalarProperty Name="AlphaNumeric" ColumnName="AlphaNumeric" />
+                <ScalarProperty Name="PasswordExpiresAfter" ColumnName="PasswordExpiresAfter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TellerAccounts">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_TellerAccounts">
+              <MappingFragment StoreEntitySet="tbl_TellerAccounts">
+                <ScalarProperty Name="tbl_TellerAccountsID" ColumnName="tbl_TellerAccountsID" />
+                <ScalarProperty Name="TellerAccountNo" ColumnName="TellerAccountNo" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PasswordHistory">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PasswordHistory">
+              <MappingFragment StoreEntitySet="tbl_PasswordHistory">
+                <ScalarProperty Name="PassValue" ColumnName="PassValue" />
+                <ScalarProperty Name="TrxDate" ColumnName="TrxDate" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="recno" ColumnName="recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchSettings">
+            <EntityTypeMapping TypeName="EsoftEstateModel.BranchSettings">
+              <MappingFragment StoreEntitySet="BranchSettings">
+                <ScalarProperty Name="BranchSettingsId" ColumnName="BranchSettingsId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GlAccounts">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_GlAccounts">
+              <MappingFragment StoreEntitySet="tbl_GlAccounts">
+                <ScalarProperty Name="tbl_GlAccountsID" ColumnName="tbl_GlAccountsID" />
+                <ScalarProperty Name="Account_Blocked" ColumnName="Account_Blocked" />
+                <ScalarProperty Name="GlName" ColumnName="GlName" />
+                <ScalarProperty Name="GlAccountNo" ColumnName="GlAccountNo" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Ledger">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_Ledger">
+              <MappingFragment StoreEntitySet="tbl_Ledger">
+                <ScalarProperty Name="tbl_ledgerID" ColumnName="tbl_ledgerID" />
+                <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+                <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
+                <ScalarProperty Name="DebitAmount" ColumnName="DebitAmount" />
+                <ScalarProperty Name="Machine" ColumnName="Machine" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="Docid" ColumnName="Docid" />
+                <ScalarProperty Name="Narration" ColumnName="Narration" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="GlContra" ColumnName="GlContra" />
+                <ScalarProperty Name="GlAccountNo" ColumnName="GlAccountNo" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ModuleNames">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_ModuleNames">
+              <MappingFragment StoreEntitySet="tbl_ModuleNames">
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="RECNO" ColumnName="RECNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PaymentModes">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PaymentModes">
+              <MappingFragment StoreEntitySet="tbl_PaymentModes">
+                <ScalarProperty Name="tbl_PaymentID" ColumnName="tbl_PaymentID" />
+                <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PostingReferences">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_PostingReferences">
+              <MappingFragment StoreEntitySet="tbl_PostingReferences">
+                <ScalarProperty Name="PostingName" ColumnName="PostingName" />
+                <ScalarProperty Name="PostingId" ColumnName="PostingId" />
+                <ScalarProperty Name="recno" ColumnName="recno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EsoftEstateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyEmail" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyTelephone" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyPin" Type="varchar" MaxLength="50" />
+          <Property Name="Excise_Duty_Rate" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="StampDuty" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="WithholdingtaxRate" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="WithholdingtaxAccount" Type="char" MaxLength="20" />
+          <Property Name="DisplayMessage" Type="varchar" MaxLength="200" />
+          <Property Name="Surplus_Loss_Account" Type="varchar" MaxLength="20" />
+          <Property Name="Teller_Slip_FooterText" Type="varchar" MaxLength="80" />
+          <Property Name="System_Lock_Out_time" Type="int" />
+          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectSettings">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="50" />
+          <Property Name="ProjectId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_trail">
+          <Key>
+            <PropertyRef Name="tbl_trailID" />
+          </Key>
+          <Property Name="recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Activity" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="ActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TrAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PostingDocid" Type="varchar" MaxLength="6" />
+          <Property Name="MachineDate" Type="datetime" Nullable="false" />
+          <Property Name="tbl_trailID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_UserRoles">
+          <Key>
+            <PropertyRef Name="Tbl_UserRolesID" />
+          </Key>
+          <Property Name="recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RoleRights" Type="varchar(max)" Nullable="false" />
+          <Property Name="Tbl_UserRolesID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="tbl_usersID" />
+          </Key>
+          <Property Name="Recno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginCode" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="LoginName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoginTime_From" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LoginTime_To" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LoginMachine" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LoginPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountDisabled" Type="bit" Nullable="false" />
+          <Property Name="AccessRights" Type="varchar" MaxLength="8000" />
+          <Property Name="PasswordExpiry" Type="datetime" />
+          <Property Name="Login_Expiry" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UserRole" Type="varchar" MaxLength="3" />
+          <Property Name="EmploymentNumber" Type="varchar" MaxLength="10" />
+          <Property Name="OtherUserRoles" Type="varchar" MaxLength="50" />
+          <Property Name="tbl_usersID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WebPassword" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="EsoftEstateModelStoreContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectSettings" EntityType="Self.ProjectSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_trail" EntityType="Self.tbl_trail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_UserRoles" EntityType="Self.Tbl_UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EsoftEstateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyPin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Excise_Duty_Rate" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="StampDuty" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="WithholdingtaxRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WithholdingtaxAccount" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="DisplayMessage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Surplus_Loss_Account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Teller_Slip_FooterText" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="System_Lock_Out_time" Type="Int32" />
+          <Property Name="CompanyID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectSettings">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_trail">
+          <Key>
+            <PropertyRef Name="tbl_trailID" />
+          </Key>
+          <Property Name="recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Activity" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TrAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostingDocid" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MachineDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tbl_trailID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_UserRoles">
+          <Key>
+            <PropertyRef Name="Tbl_UserRolesID" />
+          </Key>
+          <Property Name="recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleRights" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tbl_UserRolesID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_users">
+          <Key>
+            <PropertyRef Name="tbl_usersID" />
+          </Key>
+          <Property Name="Recno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LoginName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginTime_From" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginTime_To" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginMachine" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoginPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountDisabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessRights" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordExpiry" Type="DateTime" Precision="3" />
+          <Property Name="Login_Expiry" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserRole" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="EmploymentNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OtherUserRoles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tbl_usersID" Type="Guid" Nullable="false" />
+          <Property Name="WebPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Esoft_EstateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="ProjectSettings" EntityType="Self.ProjectSettings" />
+          <EntitySet Name="tbl_trail" EntityType="Self.tbl_trail" />
+          <EntitySet Name="Tbl_UserRoles" EntityType="Self.Tbl_UserRoles" />
+          <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EsoftEstateModelStoreContainer" CdmEntityContainer="Esoft_EstateEntities">
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="EsoftEstateModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+                <ScalarProperty Name="CompanyPin" ColumnName="CompanyPin" />
+                <ScalarProperty Name="Excise_Duty_Rate" ColumnName="Excise_Duty_Rate" />
+                <ScalarProperty Name="StampDuty" ColumnName="StampDuty" />
+                <ScalarProperty Name="WithholdingtaxRate" ColumnName="WithholdingtaxRate" />
+                <ScalarProperty Name="WithholdingtaxAccount" ColumnName="WithholdingtaxAccount" />
+                <ScalarProperty Name="DisplayMessage" ColumnName="DisplayMessage" />
+                <ScalarProperty Name="Surplus_Loss_Account" ColumnName="Surplus_Loss_Account" />
+                <ScalarProperty Name="Teller_Slip_FooterText" ColumnName="Teller_Slip_FooterText" />
+                <ScalarProperty Name="System_Lock_Out_time" ColumnName="System_Lock_Out_time" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectSettings">
+            <EntityTypeMapping TypeName="EsoftEstateModel.ProjectSettings">
+              <MappingFragment StoreEntitySet="ProjectSettings">
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_trail">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_trail">
+              <MappingFragment StoreEntitySet="tbl_trail">
+                <ScalarProperty Name="recno" ColumnName="recno" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="TrAmount" ColumnName="TrAmount" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="PostingDocid" ColumnName="PostingDocid" />
+                <ScalarProperty Name="MachineDate" ColumnName="MachineDate" />
+                <ScalarProperty Name="tbl_trailID" ColumnName="tbl_trailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_UserRoles">
+            <EntityTypeMapping TypeName="EsoftEstateModel.Tbl_UserRoles">
+              <MappingFragment StoreEntitySet="Tbl_UserRoles">
+                <ScalarProperty Name="recno" ColumnName="recno" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleRights" ColumnName="RoleRights" />
+                <ScalarProperty Name="Tbl_UserRolesID" ColumnName="Tbl_UserRolesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_users">
+            <EntityTypeMapping TypeName="EsoftEstateModel.tbl_users">
+              <MappingFragment StoreEntitySet="tbl_users">
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="LoginCode" ColumnName="LoginCode" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="LoginTime_From" ColumnName="LoginTime_From" />
+                <ScalarProperty Name="LoginTime_To" ColumnName="LoginTime_To" />
+                <ScalarProperty Name="LoginMachine" ColumnName="LoginMachine" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="AccountDisabled" ColumnName="AccountDisabled" />
+                <ScalarProperty Name="AccessRights" ColumnName="AccessRights" />
+                <ScalarProperty Name="PasswordExpiry" ColumnName="PasswordExpiry" />
+                <ScalarProperty Name="Login_Expiry" ColumnName="Login_Expiry" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="EmploymentNumber" ColumnName="EmploymentNumber" />
+                <ScalarProperty Name="OtherUserRoles" ColumnName="OtherUserRoles" />
+                <ScalarProperty Name="tbl_usersID" ColumnName="tbl_usersID" />
+                <ScalarProperty Name="WebPassword" ColumnName="WebPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3eaa2160db724af8b29ae1ce35155158" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="EsoftEstateModel.Company" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsoftEstateModel.ProjectSettings" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_trail" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsoftEstateModel.Tbl_UserRoles" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_users" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_Blocks" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_Blocks_Units" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_Buyers" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_NavigationMenus" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_PasswordSettings" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_TellerAccounts" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_PasswordHistory" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.BranchSettings" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_GlAccounts" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_Ledger" Width="1.5" PointX="5.75" PointY="11.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_ModuleNames" Width="1.5" PointX="7.75" PointY="11.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_PaymentModes" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EsoftEstateModel.tbl_PostingReferences" Width="1.5" PointX="0.75" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
