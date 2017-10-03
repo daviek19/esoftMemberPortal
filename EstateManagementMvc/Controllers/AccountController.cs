@@ -68,8 +68,6 @@ namespace EstateManagementMvc.Controllers
             }
         }
 
-
-
         //ToDo: Test Login Timeout Page
         public ActionResult LoginTimeout(string returnUrl)
         {
@@ -121,5 +119,13 @@ namespace EstateManagementMvc.Controllers
             return RedirectToAction("Index", "Dashboard", new { Area = "Dashboard" });
         }
 
+        public ActionResult Register()
+        {
+            PortalRegisterViewModel portalRegisterModel = new PortalRegisterViewModel();
+
+            portalRegisterModel.OrganisationName = SessionVariables.CompanyName;
+
+            return View(portalRegisterModel);
+        }
     }
 }

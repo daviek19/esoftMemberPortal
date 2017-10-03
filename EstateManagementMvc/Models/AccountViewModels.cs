@@ -63,6 +63,19 @@ namespace EstateManagementMvc.Models
         public bool RememberMe { get; set; }
     }
 
+    public class PortalRegisterViewModel
+    {
+        public string OrganisationName { get; set; }
+
+        [Required]
+        [Display(Name = "Member No")]
+        public string MemberNo { get; set; }
+
+        [Required]
+        [Display(Name = "Id Number")]
+        public string IdNo { get; set; }
+    }
+
     public class RegisterViewModel
     {
         [Required]

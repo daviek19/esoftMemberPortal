@@ -2332,6 +2332,7 @@
     <Content Include="Scripts\plugin\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Scripts\plugin\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Scripts\plugin\ckeditor\skins\moono\readme.md" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
