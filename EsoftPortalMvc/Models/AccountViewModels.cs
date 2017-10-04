@@ -161,4 +161,115 @@ namespace EsoftPortalMvc.Models
         public string Password { get; set; }
         public DateTime? DateCreated { get; set; }
     }
+
+    public class CustomerAccountsView
+    {
+        public int CustomerAccountsViewId { get; set; }
+        public Guid tbl_CustomerAccountsID { get; set; }
+        public string CustomerNo { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerIdNo { get; set; }
+        public string AccountNo { get; set; }
+        public DateTime OpenedDate { get; set; }
+        public string OpenedBy { get; set; }
+        public DateTime? AuthorisedDate { get; set; }
+        public string AuthorisedBy { get; set; }
+        public bool Locked { get; set; }
+        public string AccountRemarks { get; set; }
+        public string AccountComments { get; set; }
+        public decimal AccountType { get; set; }
+        public string AccountTypeName { get; set; }
+        public DateTime? DateClosed { get; set; }
+        public string ClosedBy { get; set; }
+        public decimal? MinimumBalance { get; set; }
+        public string GlMemSav { get; set; }
+        public tbl_accounttypes AccountTypeSettings { get; set; }
+        public string CustomerBranch { get; set; }
+        public DateTime JoiningDate { get; set; }
+        public bool? Parent_Locked { get; set; }
+        public string Parent_AccountRemarks { get; set; }
+        public string Parent_AccountComments { get; set; }
+        public string ReasonClosed { get; set; }
+        // Display Purposes for Account Rejoining
+        public List<PostingJournalsHeaderViewModel> ClosedAccountDetails { get; set; }
+
+        public List<CustomerDetailsView> customerDetails { get; set; }
+        public List<AccountTypesView> SavingsProducts { get; set; }
+        public CustomerAccountsView()
+        {
+            customerDetails = new List<CustomerDetailsView>();
+        }
+    }
+
+    public class PostingJournalsHeaderViewModel
+    {
+        [Display(Name = "Module Id")]
+        public string PostingDocid { get; set; }
+        [Display(Name = "Reference No.")]
+        public string PostingReference { get; set; }
+        [Display(Name = "Journal Description")]
+        [StringLength(50, MinimumLength = 10)]
+        public string PostingDescription { get; set; }
+        public string CreatedBy { get; set; }
+        [Display(Name = "Created By")]
+        public string CreatedByName { get; set; }
+        public string CreateBranch { get; set; }
+        [Display(Name = "Create At")]
+        public string CreateBranchName { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string VerifiedBy { get; set; }
+        [Display(Name = "Verified By")]
+        public string VerifiedByName { get; set; }
+        public DateTime? VerifiedDate { get; set; }
+        public string PostedBy { get; set; }
+        [Display(Name = "Posted By")]
+        public string PostedByName { get; set; }
+        public DateTime? PostDate { get; set; }
+        public decimal? PostingLevel { get; set; }
+        public string CustomerNo { get; set; }
+        public string AccountNo { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal? Balance { get; set; }
+        public string Section { get; set; }
+        public Guid JournalId { get; set; }
+        /* Used by complete withdrawal*/
+        public string FosaAccount { get; set; }
+        public string BankAccount { get; set; }
+        public int PostingMode { get; set; }
+        public string WithdrawalReasonCode { get; set; }
+        [Display(Name = "Withdrawal Reason")]
+        public string WithdrawalReasonName { get; set; }
+        public string PaymentMethodName { get; set; }
+        public string PayingAccount { get; set; }
+        public string ChequeNo { get; set; }
+        /* Eof Used by complete withdrawal*/
+
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal? TotalDebits { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal? TotalCredits { get; set; }
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
+        public decimal? BatchDifference { get; set; }
+
+        public int? TotalEntries { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerBranchName { get; set; }
+        public string CustomerSavingsAccountType { get; set; }
+        public List<CustomerAccountsView> CustomerSavingsAccounts { get; set; }
+
+    }
+
+    public class AccountTypesView
+    {
+        public decimal? code { get; set; }
+        public string act_code { get; set; }
+        public string category { get; set; }
+    }
+
+    public class SavingsViewModel
+    {
+        public CustomerDetailsView CustomerDetails { get; set; }
+        public List<CustomerAccountsView> SavingsAccounts { get; set; }
+    }
 }

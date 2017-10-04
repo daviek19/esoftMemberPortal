@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Member Portal</title>
+
+    <!-- #Bootstrap Core CSS -->
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/css/bootstrap.min.css")" rel="stylesheet">
+
+    ><!-- #SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content(@"~/PortalContent/css/extralayers.css")" media="screen">
+    >
+    <link rel="stylesheet" type="text/css" href="@Url.Content(@"~/PortalContent/css/settings.css")" media="screen">
+
+    ><!-- #RELATED CSS -->
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+    >
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/css/nivo-lightbox.css")" rel="stylesheet">
+    >
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/css/nivo-lightbox-theme/default/default.css")" rel="stylesheet">
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/css/animate.css")" rel="stylesheet">
+
+    <!-- #SMARTADMIN LANDING CSS -->
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/css/main.css")" rel="stylesheet">
+    <link type="text/css" href="@Url.Content(@"~/PortalContent/color/default.css")" rel="stylesheet">
+
+    <!-- #FAVICONS -->
+    <link rel="shortcut icon" href="@Url.Content(@"~/PortalContent/img/favicon/favicon.ico")" type="image/x-icon">
+    >
+    <link rel="icon" href="@Url.Content(@"~/PortalContent/img/favicon/favicon.ico")" type="image/x-icon">
+
+    <!--DATA TABLES-->
+    <link href="~/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/chosen.css" />
+
+
+    <!-- #GOOGLE FONT -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+</head>
+
+
+<body data-spy="scroll">
+
+    <div class="container">
+
+        <!-- Section: #MENU -->
+        <ul id="gn-menu" class="gn-menu-main">
+            <li class="gn-trigger">
+                <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+                <nav class="gn-menu-wrapper">
+                    <div class="gn-scroller">
+                        <ul class="gn-menu">
+                            <li class="gn-search-item">
+                                <input placeholder="Search" type="search" class="gn-search">
+                                <a class="gn-icon gn-icon-search"><span>Search</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("index", "Savings", new { Area = "CustomerServices" })" class="gn-icon gn-icon-article">Savings</a>
+                            </li>
+                            <li>
+                                <a href="#" class="gn-icon gn-icon-article">Loans</a>
+                            </li>
+                            <li>
+                                <a href="#" class="gn-icon gn-icon-article">Shares</a>
+                            </li>
+                            <li>
+                                <a href="#" class="gn-icon gn-icon-article">View Guarantors</a>
+                            </li>
+                            <li>
+                                <a href="#updates" class="gn-icon gn-icon-article">Standing Orders</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </li>
+
+            <li class="hidden-xs">
+                <a href="index.html"><img src="@Url.Content(@"~/PortalContent/img/logo-member-portal.png")" alt="logo" style="width: 135px; margin-top: -4px;" /></a>
+            </li>
+
+
+            <li class="pull-right">
+                <a href="#"> <span> Logout </span> <i class="fa fa-power-off"></i> </a>
+            </li>
+
+        </ul>
+        <!-- Section: #MENU -->
+
+    </div>
+
+    @RenderBody()
+
+    <!-- #FOOTER -->
+    <footer>
+        <div class="bottom-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <p>
+                            Copyright © 2017 - Your Company Name
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / #FOOTER -->
+    <!-- # Core JavaScript Files -->
+    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script>
+            if (!window.jQuery) {
+                document.write('<script src="@Url.Content(@"~/PortalContent/js/libs/jquery-2.0.2.min.js")"><\/script>');
+            }
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+            if (!window.jQuery.ui) {
+                document.write('<script src="@Url.Content(@"~/PortalContent/js/libs/jquery-ui-1.10.3.min.js")"><\/script>');
+            }
+    </script>
+
+
+    <!-- BOOTSTRAP JS -->
+    <script src="@Url.Content(@"~/PortalContent/js/bootstrap/bootstrap.min.js")"></script>
+
+    <!--# JS PLUGINS -->
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/classie.js")"></script>
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/gnmenu.js")"></script>
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/jquery.scrollUp.js")"></script>
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/nivo-lightbox.min.js")"></script>
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/smoothscroll.js")"></script>
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/jquery.themepunch.plugins.min.js")"></script>
+    <script src="@Url.Content(@"~/PortalContent/js/plugins/jquery.themepunch.revolution.min.js")"></script>
+
+    <!-- # Custom Theme JavaScript -->
+    <script src="@Url.Content(@"~/PortalContent/js/custom.js")"></script>
+
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <script src="~/js/plugin/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/js/plugin/datatables/dataTables.colVis.min.js"></script>
+    <script src="~/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+    <script src="~/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="~/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+    <script src="~/js/plugin/datatables/dataTables.buttons.min.js"></script>
+    <!-- 2ND GEN  DATATABLES-->
+    <script src="~/js/plugin/datatables/buttons.flash.min.js"></script>
+    <script src="~/js/plugin/datatables/jszip.min.js"></script>
+    <script src="~/js/plugin/datatables/pdfmake.min.js"></script>
+    <script src="~/js/plugin/datatables/vfs_fonts.js"></script>
+    <script src="~/js/plugin/datatables/buttons.html5.min.js"></script>
+    <script src="~/js/plugin/datatables/buttons.print.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/chosen.jquery.min.js"></script>
+
+
+    <!-- #PAGE SCRIPT -->
+    <script type="text/javascript">
+            jQuery(document).ready(function () {
+
+                jQuery('.tp-banner').show().revolution({
+                    dottedOverlay: "none",
+                    delay: 8000,
+                    startwidth: 1170,
+                    startheight: 700,
+                    hideThumbs: 200,
+                    thumbWidth: 100,
+                    thumbHeight: 50,
+                    thumbAmount: 5,
+                    navigationType: "bullet",
+                    navigationArrows: "solo",
+                    navigationStyle: "preview4",
+                    touchenabled: "on",
+                    onHoverStop: "off",
+                    swipe_velocity: 0.7,
+                    swipe_min_touches: 1,
+                    swipe_max_touches: 1,
+                    drag_block_vertical: false,
+                    parallax: "mouse",
+                    parallaxBgFreeze: "on",
+                    parallaxLevels: [7, 4, 3, 2, 5, 4, 3, 2, 1, 0],
+                    keyboardNavigation: "off",
+                    navigationHAlign: "center",
+                    navigationVAlign: "bottom",
+                    navigationHOffset: 0,
+                    navigationVOffset: 20,
+                    soloArrowLeftHalign: "left",
+                    soloArrowLeftValign: "center",
+                    soloArrowLeftHOffset: 20,
+                    soloArrowLeftVOffset: 0,
+                    soloArrowRightHalign: "right",
+                    soloArrowRightValign: "center",
+                    soloArrowRightHOffset: 20,
+                    soloArrowRightVOffset: 0,
+                    shadow: 0,
+                    fullWidth: "off",
+                    fullScreen: "on",
+                    spinner: "spinner4",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    forceFullWidth: "off",
+                    hideThumbsOnMobile: "off",
+                    hideNavDelayOnMobile: 1500,
+                    hideBulletsOnMobile: "off",
+                    hideArrowsOnMobile: "off",
+                    hideThumbsUnderResolution: 0,
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    startWithSlide: 0,
+                    fullScreenOffsetContainer: ""
+                });
+
+
+                $('#dt_basic').dataTable();
+
+            });
+            //ready
+
+            $.scrollUp();
+
+
+
+    </script>
+
+</body>
+
+</html>
+
