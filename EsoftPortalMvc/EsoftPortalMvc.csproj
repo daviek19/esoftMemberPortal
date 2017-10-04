@@ -170,6 +170,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="All_Cheques_authorised_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="All_Cheques_cleared_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="All_Cheques_matured_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="All_Cheques_Received_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Helpers\DashRouteHandler.cs" />
     <Compile Include="App_Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="App_Helpers\Settings.cs" />
@@ -185,95 +197,287 @@
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\DashboardViewModel.cs" />
     <Compile Include="Areas\GeneralSettings\GeneralSettingsAreaRegistration.cs" />
+    <Compile Include="AtmCardsRegister_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AtmCardsSingle_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AtmCardsTrail_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Authorisations_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bankerspaid_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankersUnpaid_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BranchSetting.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheckAuthorisation_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChequesPrinting_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClosedSocietyMembers_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Collaterallisting_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommiteeAllowancesTotals_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommiteeAllowances_codes_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommiteeAllowances_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsolidatedAccountGledger_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CountyCode.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customerAccounts_Closed_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerFileTracking_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customer_age_analysis_list_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Status_deposits_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Status_savings_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DailyTransactions_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Electronic_Channels_Bankingx_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Electronic_Channels_Banking_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPortalModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EsoftPortalModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPortalModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPortalModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EsoftPortalModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPos_CompanyDetails_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPos_CustomerDetails_Balance_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPos_CustomerDetails_Products_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPos_CustomerDetails_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPos_Operator_Trail_Detailed_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EsoftPos_Operator_Trail_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Esoft_Proc_Get_All_Branches_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdaListing_matured_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdaListing_Paid_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdaListing_posted_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdaListing_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FdaListing_revoked_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FileTracking_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generate_customer_No_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetAboveLimitTransactions_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetGlBalance_Daily_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMemberAccountsRemarksComments_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMemberRemarksComments_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_GlAuditTrail_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_Group_Member_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_LoanBalances_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_Savings_Balance_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_sharesBalances_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_shares_Balance_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_Single_LoanBalance_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_Unpaid_Invoices_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Get_Unpaid_Invoice_Single_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="glaccountsCategorised_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Ledgerstate_Single_Account_Br_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ledgerstate_Single_Account_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoansAppraisal_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoansApproval_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoansAudit_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoansIssued_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoansRegister_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoansSorders_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Match_MPesaDeposit_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberDetailsMissing_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberRegister_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageOut_register_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageRaised_register_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MicroGroupAccReport_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MicroMainRegister_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MicroMemberRegister_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BranchSettings.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CachingProvider.cs" />
-    <Compile Include="Models\Company.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DateModelBinder.cs" />
     <Compile Include="Models\DbConnector.cs" />
     <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\DoubleModelBinder.cs" />
-    <Compile Include="Models\EstateDbModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstateDbModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EstateDbModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EstateDbModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstateDbModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Functions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IValidationDictionary.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NavigationMenu.cs" />
     <Compile Include="Models\PartialClasses.cs" />
-    <Compile Include="Models\ProjectSettings.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_Blocks.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_Blocks_Units.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_Buyers.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_GlAccounts.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_Ledger.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_ModuleNames.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_NavigationMenus.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_PasswordHistory.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_PasswordSettings.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_PaymentModes.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_PostingReferences.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_TellerAccounts.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_trail.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tbl_UserRoles.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_users.cs">
-      <DependentUpon>EstateDbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TrimModelBinder.cs" />
+    <Compile Include="notices_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NO_ACCOUNT.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostTransaction.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrintCheques_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductArrears_01dec2016.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicHoliday.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reco_bnkstatement_report_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reco_cashbook_report_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reversals_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaccoLink_Check_Card_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaccoLink_GetAtmCharges_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaccoLink_PostTransactions_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaccoLink_ReverseTransactions_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\Accounts\GlAccountsManager.cs" />
     <Compile Include="Services\Common\AuditTrail.cs" />
     <Compile Include="Services\Common\BulkInsertClass.cs" />
@@ -281,6 +485,7 @@
     <Compile Include="Services\Common\Crypto.cs" />
     <Compile Include="Services\Common\CustomValidation.cs" />
     <Compile Include="Services\Common\DataTablesCustomModelBinder.cs" />
+    <Compile Include="Services\Common\EmailManager.cs" />
     <Compile Include="Services\Common\EsoftEnums.cs" />
     <Compile Include="Services\Common\ExtensionMethods.cs" />
     <Compile Include="Services\Common\GuidGenerator.cs" />
@@ -298,7 +503,637 @@
     <Compile Include="Services\Registry\CustomerManager.cs" />
     <Compile Include="Services\UserAdministration\CheckUserAccessRights.cs" />
     <Compile Include="Services\UserAdministration\UserAdministrationManager.cs" />
+    <Compile Include="Single_Customer_Status_deposits_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Single_Customer_Status_loans_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Single_Customer_Status_savings_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Single_teller_cheques_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="smsRegister_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyActiveMembers_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersDeceased_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersLoansBr_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersLoansInterest_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersLoans_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersShrsCapBr_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersShrsCap_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersShrsDepBr_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersShrsDep_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersTopLoanee_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersTopSaver_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembersTopSavings_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyMembers_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocietyStatistics_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AgeStatistics_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_agetest_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="SystemMessages_Unread_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_accounttypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_appraisalTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AuditClass.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AuditData.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AuditDataComments.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AuditLog.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Authorisations.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Authorised_Atm_Transactions.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_BankCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bankerscheques.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bod_Allowances.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bod_Allowance_Rates.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bod_commitee_members.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bod_Committees.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bod_Titles.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CheckOffFile_ExtractColumn.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CheckOff_ExtractType.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CheckOff_LinkCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ChequeBooks.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ChequeBooks_Used.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_chequePrinting.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_cheques.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_ChequeStandingOrders.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_cheque_types.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Collaterals.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CollateralTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Customer.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CustomerAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_CustomerAccounts_Extended.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_customerAuthorised.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_customerNextofKin.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_customerNumbers.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_customerPhotos.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Deceased.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_denoms.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Departments.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Employer_Salary_Extract.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Failed_standingOrders.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FdaPosting.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FileMovements.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FileMovementsHistory.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FixedRates.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FixedTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlAccounts_Categorised.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlAccounts_Extended.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlBudget.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlClassification.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlSubCategory.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlSubClass.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GlTransactionCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GuarantorsAttachDetails.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_InvestmentCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Ledger.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ledger_Apportionments.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ledger_Classiffication.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LinkedAtmCards.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LinkProcess.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LnRegister.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanAdvanceCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanAdvanceTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanAppraisalCheck.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanAppraisalCheck_Investments.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanClearance.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanDisburseCharges.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanDisbursementAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanDisbursementAdvance.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanDisbursementCheck.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanDisbursementCheck_Recover.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanDisbursementDays.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanEarningData.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_LoanEarningDedUctionCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanGuarantors.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanGuarantors_History.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_LoanInsuranceRates.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_loanIntExempt.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_loanIntExempt_history.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanMasterTable.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanMasterTable_history.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanProcessingLevels.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanPurposeCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_loanRates.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanReductionReasons.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_loans.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoanVariations.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LongRunningProcesses.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MainSavingsAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MembershipTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MicroAgent.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MicroCustomer.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MicroDesignation.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MicroMember.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MicroPostings.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MicroPosting_Details.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MicroRegion.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_MicroSubRegions.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MicroWeeklyPrintSettings.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MobileUsers.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ModuleNames.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Mpesa_Deposits.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_NavigationMenus.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Notice.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_OfficeLocations.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PasswordHistory.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PasswordSettings.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Paycommissions.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PaymentInvoices.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PaymentTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PayoutCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PayoutFile_ExtractColumn.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PayoutFile_ExtractType.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PortalMembers.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostalCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingDetails.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingDetails_CheckOff.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingDividends.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingDividends_Details.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingDividends_Details_Flat.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingDividends_Rates.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingHeader.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingInvoices.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingInvoices_Details.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingInvoices_Payment_Details.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingJournals.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingJournals_Details.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingJournals_Details_Extended.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingJournals_Details_Extended_Ledger.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingJournals_Ledger.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingLinkCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingReferences.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingRetirement.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingWithDrawals.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_PostingWithdrawals_Details.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ProductArrears.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ProductCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Reco_BnkStatement.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Reco_CashBook.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Reco_Periods.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ReferenceNumbers.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_relationships.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SaccoLink_Atm8585ISOFields.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SaccoLink_Pos_Devices.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SaccolInk_Transactions.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SasraReportTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Sasra_Master.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_savings.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SavingsInterest.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_shares.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_sharesDrive.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SpecialStaff_Committee_Loan_Rates.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_StaffCommittee.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_StaffCommitteeTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StandingOrderFailureCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StandingOrderRecoveryPriority.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_standingOrders.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StatementPrinting_History.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Statement_Access.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_stationCodes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StationZones.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StdOrderCharges.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StdorderFrequency.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_StdOrderTypes.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Suspense_Account_Transactions.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_SystemMessaging.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_TellerAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Teller_Closing.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trail.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tbl_UserRoles.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_users.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Web_ProductRepayments.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_withdrawalNotices.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_withdrawals_Death_claim.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_withdrawals_Funeral_Rider.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Withdrawal_Reasons.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TellerClosing_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TellerSummary_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tempLoanCode.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transactionsby_refence_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionsTrail_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transact_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrialBalance_BranchWise_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrialBalance_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwCustomer_Status_deposits_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_BankAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_CustomerAccounts.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Withdrawals_listing_Result.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Wrong_IMported_Fda.cs">
+      <DependentUpon>EsoftPortalModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -832,6 +1667,16 @@
     <Content Include="css\smartadmin-skins.min.css" />
     <Content Include="css\your_style.css" />
     <Content Include="css\your_style.min.css" />
+    <Content Include="EsoftPortalModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EsoftPortalModel.edmx</DependentUpon>
+      <LastGenOutput>EsoftPortalModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EsoftPortalModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EsoftPortalModel.edmx</DependentUpon>
+      <LastGenOutput>EsoftPortalModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome\fontawesome-webfont.svg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -1490,23 +2335,6 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\EstateDbModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EstateDbModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EstateDbModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EstateDbModel.edmx</DependentUpon>
-      <LastGenOutput>EstateDbModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\EstateDbModel.edmx.diagram">
-      <DependentUpon>EstateDbModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EstateDbModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EstateDbModel.edmx</DependentUpon>
-      <LastGenOutput>EstateDbModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\css\your_style.less" />
     <Content Include="Content\data\dataList.json" />
     <Content Include="Content\fonts\font-awesome\fontawesome-webfont.eot" />
@@ -1610,6 +2438,13 @@
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
     <Content Include="App_Code\ToastrBuilder.cshtml" />
+    <EntityDeploy Include="EsoftPortalModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EsoftPortalModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EsoftPortalModel.edmx.diagram">
+      <DependentUpon>EsoftPortalModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />

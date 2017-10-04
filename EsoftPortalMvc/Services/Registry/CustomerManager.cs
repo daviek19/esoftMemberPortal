@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.Reporting.WebForms;
 using EsoftPortalMvc.Models;
 using EsoftPortalMvc.Services.Common;
+using EstateManagementMvc;
 
 namespace ESoft.Web.Services.Registry
 {
@@ -17,7 +18,7 @@ namespace ESoft.Web.Services.Registry
         public const string customerNumberMask = "999999";
 
         private AuditTrail auditTrail = new AuditTrail();
-        private Esoft_EstateEntities mainDb = new Esoft_EstateEntities();
+        private EsoftPortalEntities mainDb = new EsoftPortalEntities();
         private IValidationDictionary _validatonDictionary;
         readonly string connectionString = DbConnector.MainDbConnectionString();
         private PostTransactions transactionsEngine = new PostTransactions();
@@ -42,7 +43,7 @@ namespace ESoft.Web.Services.Registry
             customerNo = ValueConverters.PADLeft(customerNumberMask.Length, customerNo.Trim(), '0');
             try
             {
-                string sqlCommand = "SELECT CustomerNo,coalesce(CustomerIdNo,'') as CustomerIdNo,coalesce(CustomerName,'') as CustomerName,Locked,AccountRemarks,AccountComments,MemberType,Branch," +
+                string sqlCommand = "SELECT tbl_CustomerId,EmailAddress, CustomerNo,coalesce(CustomerIdNo,'') as CustomerIdNo,coalesce(CustomerName,'') as CustomerName,Locked,AccountRemarks,AccountComments,MemberType,Branch," +
                     " AccountRemarks,AccountComments,DateClosed,coalesce(MobileNo,'') as MobileNo,EmpNumber as EmploymentNo,DateOfBirth,JoiningDate,Coalesce(EmployerCode,'') as EmployerCode," +
                     " coalesce((select name from BranchSettings where branchcode=tbl_customer.Branch),'') as BranchName, " +
                     " coalesce((select MembershipName from tbl_MembershipTypes where MembershipCode=tbl_customer.MemberType),'') as MemberTypeName, " +
@@ -101,6 +102,30 @@ namespace ESoft.Web.Services.Registry
             }
 
             return custRecord;
+        }
+
+
+        public Boolean CreateNewPortalMember(CustomerDetailsView customerDetailsView,String passCode)
+        {
+            try
+            {
+                string query =
+                    "insert into tbl_PortalMembers (tbl_CustomerId,CustomerNo,CustomerName,IdNo,MobileNo,Email,SecurityCode,Password)" +
+                    "values ('" + customerDetailsView.tbl_CustomerId + "','" + customerDetailsView.CustomerNo + "','" +
+                    customerDetailsView.CustomerName + "'," +
+                    "'" + customerDetailsView.CustomerIdNo + "','" + customerDetailsView.MobileNo + "','" +
+                    customerDetailsView.EmailAddress + "','" + passCode + "',null) ";
+                DbDataReader reader = DbConnector.GetSqlReader(query);
+                if (reader.RecordsAffected > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
         }
 
     }

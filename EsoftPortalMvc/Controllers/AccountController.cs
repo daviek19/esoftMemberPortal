@@ -13,13 +13,15 @@ using EsoftPortalMvc.Services.Common;
 using System.Web.Security;
 using EsoftPortalMvc.Services.UserAdministration;
 using System.Collections.Generic;
+using EstateManagementMvc;
+using EstateManagementMvc.Services.Common;
 using ESoft.Web.Services.Registry;
 
 namespace EsoftPortalMvc.Controllers
 {
     public class AccountController : BaseController
     {
-        Esoft_EstateEntities db = new Esoft_EstateEntities();
+        EsoftPortalEntities db = new EsoftPortalEntities();
         CustomerManager customerManager = new CustomerManager();
         // GET: Account
         public ActionResult Login()
@@ -56,12 +58,10 @@ namespace EsoftPortalMvc.Controllers
                 {
                     MenuManager menuManger = new MenuManager();
 
-                    menuManger.GetUserMenuItems(UserSession.Current.userDetails.AccessRights);
+                    FormsAuthentication.SetAuthCookie(UserSession.Current.userDetails.CustomerName, false);
+                    this.AddToastMessage("Esoft Financials ", "Welcome " + UserSession.Current.userDetails.CustomerNo, ToastType.Success);
 
-                    FormsAuthentication.SetAuthCookie(UserSession.Current.userDetails.FullName, false);
-                    this.AddToastMessage("Esoft Financials ", "Welcome " + UserSession.Current.userDetails.LoginName, ToastType.Success);
-
-                    Utility.WriteErrorLog("Login into System : Welcome " + UserSession.Current.userDetails.LoginName);
+                    Utility.WriteErrorLog("Login into System : Welcome " + UserSession.Current.userDetails.CustomerNo);
                     return RedirectToAction("Index", "Dashboard", new { Area = "Dashboard" });
                 }
             }
@@ -95,12 +95,9 @@ namespace EsoftPortalMvc.Controllers
                 }
                 else
                 {
-                    MenuManager menuManger = new MenuManager();
-
-                    menuManger.GetUserMenuItems(UserSession.Current.userDetails.AccessRights);
 
 
-                    this.AddToastMessage("Esoft Financials ", "Welcome " + UserSession.Current.userDetails.LoginName, ToastType.Success);
+                    this.AddToastMessage("Esoft Financials ", "Welcome " + UserSession.Current.userDetails.CustomerNo, ToastType.Success);
 
                     // return RedirectToAction("Default", "Home");
                     return RedirectToLocal(returnUrl);
@@ -144,9 +141,24 @@ namespace EsoftPortalMvc.Controllers
                     {
                         //Everything is matching
                         //1) Generate pass-code
+
+                      var passCode= ValueConverters.RandomString(7);
                         //2) Create the account under tbl_PortalMembers
+                        if (this.customerManager.CreateNewPortalMember(customerDetailsView[0], passCode))
+                        {
+                            EmailManager emailManager = new EmailManager();
+                            emailManager.SendEmail(customerDetailsView[0].EmailAddress, "Registration Status", "your registration code is " + passCode);
+
+                        }
+                        ;
                         //3) Send Email and SMS for OTP
-                        //4) Show success and redirect to login page
+
+
+                        this.AddToastMessage("Registration",
+                            "Registration successful, access code has been sent to your email address",
+                            ToastType.Success);
+
+                        return RedirectToAction("Login");
                     }
                     else
                     {

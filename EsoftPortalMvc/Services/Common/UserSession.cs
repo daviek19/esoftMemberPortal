@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
@@ -31,7 +32,7 @@ namespace EsoftPortalMvc.Services.Common
             }
         }
 
-        public UserDetailsView userDetails { get; set; }
+        public tbl_PortalMembers userDetails { get; set; }
         public string MachineName { get; set; }
         public List<NavigationMenu> UserMenuIds { get; set; }
         public string UserImage { get; set; }

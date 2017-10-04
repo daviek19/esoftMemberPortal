@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
@@ -12,7 +13,7 @@ namespace EsoftPortalMvc.Services.Common
         private tbl_trail _tbl_trail = null;
 
 
-        public void CreateTrailRecord(Esoft_EstateEntities db, string loginCode, string activity,
+        public void CreateTrailRecord(EsoftPortalEntities db, string loginCode, string activity,
             decimal trAmount, string accountNo, string postingDocid, bool _saveChanges)
         {
 
@@ -36,7 +37,7 @@ namespace EsoftPortalMvc.Services.Common
         public static void CreateTrailRecord(string loginCode, string activity,
            decimal trAmount, string accountNo, string postingDocid, bool _saveChanges)
         {
-            Esoft_EstateEntities db = new Esoft_EstateEntities();
+            EsoftPortalEntities db = new EsoftPortalEntities();
             tbl_trail _tbl_trailx = null;
             _tbl_trailx = new tbl_trail();
             _tbl_trailx.AccountNo = accountNo;
@@ -57,7 +58,7 @@ namespace EsoftPortalMvc.Services.Common
         public void CreateTrailRecords(string loginCode, string activity,
           decimal trAmount, string accountNo, string postingDocid, bool _saveChanges)
         {
-            Esoft_EstateEntities db = new Esoft_EstateEntities();
+            EsoftPortalEntities db = new EsoftPortalEntities();
             tbl_trail _tbl_trailx = null;
             _tbl_trailx = new tbl_trail();
             _tbl_trailx.AccountNo = accountNo;
@@ -97,7 +98,7 @@ namespace EsoftPortalMvc.Services.Common
             else
             {
                 _trail_insert_string = "INSERT INTO TBL_TRAIL(PostingDocid,MachineDate,LOGINCODE,ACTIVITY,ACTIVITYDATE,MACHINENAME,TRAMOUNT,ACCOUNTNO)" +
-                 " VALUES('" + _docid + "',GETDATE(),'" + UserSession.Current.userDetails.LoginCode + "','" + _mactivity + "',GETDATE(),'" + _machinename + "'," + _mamountx + ",'" + _maccount + "')";
+                 " VALUES('" + _docid + "',GETDATE(),'" + UserSession.Current.userDetails.CustomerNo + "','" + _mactivity + "',GETDATE(),'" + _machinename + "'," + _mamountx + ",'" + _maccount + "')";
 
             }
 

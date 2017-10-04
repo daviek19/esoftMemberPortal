@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
@@ -458,7 +459,7 @@ namespace EsoftPortalMvc.Services.Common
 
 
 
-        public static DateTime GetChequeDays(int? numberOfDays, DateTime dateToday, Esoft_EstateEntities mainDb)
+        public static DateTime GetChequeDays(int? numberOfDays, DateTime dateToday, EsoftPortalEntities mainDb)
         {
             if (ValueConverters.ConvertNullToInteger(numberOfDays) == 0)
             {

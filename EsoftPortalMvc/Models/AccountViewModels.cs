@@ -145,6 +145,8 @@ namespace EsoftPortalMvc.Models
         public DateTime? JoiningDate { get; set; }
         public string EmployerCode { get; set; }
         public string EmployerName { get; set; }
+        public Guid tbl_CustomerId { get; set; }
+        public string EmailAddress { get; set; }
 
     }
 

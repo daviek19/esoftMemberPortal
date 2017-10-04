@@ -5,17 +5,18 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
     public class CompanyManager
     {
-        private Esoft_EstateEntities mainDb;
+        private EsoftPortalEntities mainDb;
         private IValidationDictionary _validationDictionary;
 
         public CompanyManager()
         {
-            mainDb = new Esoft_EstateEntities();
+            mainDb = new EsoftPortalEntities();
         }
 
         public CompanyManager(IValidationDictionary validationDictionary)
@@ -26,7 +27,7 @@ namespace EsoftPortalMvc.Services.Common
 
         public Company GetCompanyDetails()
         {
-            return mainDb.Company.FirstOrDefault();
+            return mainDb.Companies.FirstOrDefault();
         }
 
         public CompanySettingViewModel GetCompanySettingViewModel(CompanySettingViewModel companySettingViewModel)
@@ -38,18 +39,18 @@ namespace EsoftPortalMvc.Services.Common
                 //GlAccountsManager glAccountsManager = new GlAccountsManager();
                 companySettingViewModel.CompanyId = companydetails.CompanyID;
                 companySettingViewModel.Address = companydetails.CompanyAddress;
-                companySettingViewModel.CompanyName = companydetails.CompanyName;                
+                companySettingViewModel.CompanyName = companydetails.CompanyName;
                 companySettingViewModel.Email = companydetails.CompanyEmail;
                 companySettingViewModel.ExciseDuty = companydetails.Excise_Duty_Rate;
-                companySettingViewModel.KraPinNo = companydetails.CompanyPin;                
+                companySettingViewModel.KraPinNo = companydetails.CompanyPin;
                 companySettingViewModel.ScreenMessage = companydetails.DisplayMessage;
                 companySettingViewModel.SlipFooterText = companydetails.Teller_Slip_FooterText;
                 companySettingViewModel.StampDutyCharge = companydetails.StampDuty;
-               
+
                 companySettingViewModel.SystemOutLockTime = companydetails.System_Lock_Out_time;
                 companySettingViewModel.Telephone = companydetails.CompanyTelephone;
                 companySettingViewModel.WithHoldingTaxRate = companydetails.WithholdingtaxRate;
-               
+
                // companySettingViewModel.GlAccounts = glAccountsManager.GlAccountsTrimmed(mainDb).ToList();
 
             }
@@ -123,7 +124,7 @@ namespace EsoftPortalMvc.Services.Common
 
         private void AuditCompanyChanges(CompanySettingViewModel companySettingViewModel, List<PostTransactionsViewModel> transList, string m_current_posting_reference)
         {
-            Company entity = mainDb.Company.FirstOrDefault();
+            Company entity = mainDb.Companies.FirstOrDefault();
 
             UpdateModel(companySettingViewModel);
             if (mainDb.Entry(entity).State == EntityState.Added)
@@ -135,7 +136,7 @@ namespace EsoftPortalMvc.Services.Common
                     if (newValue != null)
                     {
                         string activity = " Captured Value " + propertyName.Trim() + newValue.ToString().Trim();
-                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.LoginCode, false);
+                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.CustomerNo, false);
                     }
                 }
             }
@@ -152,17 +153,17 @@ namespace EsoftPortalMvc.Services.Common
                     if (originalValue != null && newValue == null && !originalValue.Equals(newValue))
                     {
                         string activity = " Changed " + propertyName.Trim() + " From " + originalValue.ToString().Trim() + " To ";
-                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.LoginCode, false);
+                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.CustomerNo, false);
                     }
                     else if (originalValue == null && newValue != null)
                     {
                         string activity = " Changed " + propertyName.Trim() + " From  To " + newValue.ToString().Trim();
-                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.LoginCode, false);
+                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.CustomerNo, false);
                     }
                     else if (originalValue != null && newValue == null)
                     {
                         string activity = " Changed " + propertyName.Trim() + " From " + originalValue.ToString().Trim() + " To ";
-                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.LoginCode, false);
+                        AuditTrail.CreateTrailPostingRecord(transList, m_current_posting_reference, "9904", activity, 0, "SETUP", UserSession.Current.userDetails.CustomerNo, false);
                     }
                 }
             }
@@ -175,17 +176,17 @@ namespace EsoftPortalMvc.Services.Common
             if (companydetails != null)
             {
                 companydetails.CompanyAddress = companySettingViewModel.Address;
-                companydetails.CompanyName = companySettingViewModel.CompanyName;                
+                companydetails.CompanyName = companySettingViewModel.CompanyName;
                 companydetails.CompanyEmail = companySettingViewModel.Email;
                 companydetails.Excise_Duty_Rate = companySettingViewModel.ExciseDuty;
-                companydetails.CompanyPin = companySettingViewModel.KraPinNo;               
+                companydetails.CompanyPin = companySettingViewModel.KraPinNo;
                 companydetails.DisplayMessage = companySettingViewModel.ScreenMessage;
                 companydetails.Teller_Slip_FooterText = companySettingViewModel.SlipFooterText;
-                companydetails.StampDuty = companySettingViewModel.StampDutyCharge;                
+                companydetails.StampDuty = companySettingViewModel.StampDutyCharge;
                 companydetails.System_Lock_Out_time = companySettingViewModel.SystemOutLockTime;
-                companydetails.CompanyTelephone = companySettingViewModel.Telephone;               
+                companydetails.CompanyTelephone = companySettingViewModel.Telephone;
                 companydetails.WithholdingtaxRate = companySettingViewModel.WithHoldingTaxRate;
-                
+
             }
         }
     }

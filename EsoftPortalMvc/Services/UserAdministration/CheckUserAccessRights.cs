@@ -10,11 +10,8 @@ namespace EsoftPortalMvc.Services.UserAdministration
     {
         public static bool CheckUserAccess(string moduleId)
         {
-            if (UserSession.Current == null || UserSession.Current.userDetails == null || ValueConverters.IsStringEmpty(UserSession.Current.userDetails.AccessRights))
-            {
-                return false;
-            }
-            return UserSession.Current.userDetails.AccessRights.Contains(moduleId);
+
+            return false;// UserSession.Current.userDetails.AccessRights.Contains(moduleId);
         }
     }
 }

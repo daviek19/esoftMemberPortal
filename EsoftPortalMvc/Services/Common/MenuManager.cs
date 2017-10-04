@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
     public class MenuManager
     {
-        Esoft_EstateEntities db = new Esoft_EstateEntities();
+        EsoftPortalEntities db = new EsoftPortalEntities();
         public bool SaveSystemMenus(List<NavigationMenu> systemMenus)
         {
             StringBuilder sb = new StringBuilder();
@@ -176,7 +177,7 @@ namespace EsoftPortalMvc.Services.Common
             autoCompleteItem = new List<AutoCompleteItem>();
             List<NavigationMenu> allMenuIds = new List<NavigationMenu>();
             searchTerm = searchTerm.ToUpper().Trim();
-           
+
             if (UserSession.Current.UserMenuIds != null)
             {
                 int count = UserSession.Current.UserMenuIds.Count;
@@ -189,7 +190,7 @@ namespace EsoftPortalMvc.Services.Common
                     if (allMenuIds.Count > 15)
                         break;
                 }
-            }           
+            }
 
             StringBuilder strBui = new StringBuilder();
             foreach (var item in allMenuIds)

@@ -13,6 +13,7 @@ using System.Web.Routing;
 using System.Web.Mvc.Filters;
 using System.Drawing.Printing;
 using System.Drawing;
+using EstateManagementMvc;
 using Microsoft.Reporting.WebForms;
 
 
@@ -34,19 +35,18 @@ namespace EsoftPortalMvc.Controllers
         {
             if (UserSession.Current.userDetails == null)
             {
-                UserSession.Current.userDetails = new UserDetailsView();
+                UserSession.Current.userDetails = new tbl_PortalMembers();
             }
-            if (UserSession.Current.userDetails.tbl_usersID == null || UserSession.Current.userDetails.tbl_usersID == Guid.Empty)
+            if ( UserSession.Current.userDetails.tbl_CustomerId == null ||  UserSession.Current.userDetails.tbl_CustomerId == Guid.Empty)
             {
-                Esoft_EstateEntities mainDb = new Esoft_EstateEntities();
-                var userTest = mainDb.tbl_users.FirstOrDefault(x => x.LoginCode == "A02");
+                EsoftPortalEntities mainDb = new EsoftPortalEntities();
+                var userTest = mainDb.tbl_PortalMembers.FirstOrDefault();
 
                 SessionVariables.SetUserDetails(userTest, mainDb, GetIpAddress());
 
-                UserSession.Current.userDetails.LoginCode = "XXX";
-                //UserSession.Current.userDetails.LoginName = "Development";
-                UserSession.Current.userDetails.TellerAccountNo = "1-01-2-0002-00";
-                UserSession.Current.userDetails.UserBranch = "01";
+                UserSession.Current.userDetails.CustomerNo = "XXX";
+                //UserSession.Current.userDetails.CustomerNo = "Development";
+
             }
         }
 
@@ -155,7 +155,7 @@ namespace EsoftPortalMvc.Controllers
 
             public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
             {
-                if (UserSession.Current.userDetails == null || UserSession.Current.userDetails.tbl_usersID == null || UserSession.Current.userDetails.tbl_usersID == Guid.Empty)// if (user.Identity.IsAuthenticated == false)
+                if (UserSession.Current.userDetails == null ||  UserSession.Current.userDetails.tbl_CustomerId == null ||  UserSession.Current.userDetails.tbl_CustomerId == Guid.Empty)// if (user.Identity.IsAuthenticated == false)
                 {
                     string rawUrl = filterContext.HttpContext.Request.RawUrl.ToUpper();
                     if (rawUrl != "/")
@@ -225,7 +225,7 @@ namespace EsoftPortalMvc.Controllers
             file.Write(bytes, 0, bytes.Length);
             file.Dispose();
 
-            //evaluate file type work flow           
+            //evaluate file type work flow
             string url = string.Empty;
             Session["ReportFileToPreview"] = path + "\\" + file_name;
 

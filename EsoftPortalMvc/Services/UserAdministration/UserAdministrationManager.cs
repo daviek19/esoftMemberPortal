@@ -10,14 +10,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.UserAdministration
 {
     public class UserAdministrationManager
     {
-        private Esoft_EstateEntities mainDb = new Esoft_EstateEntities();
+        private EsoftPortalEntities mainDb = new EsoftPortalEntities();
         private IValidationDictionary _validatonDictionary;
-        
+
         public UserAdministrationManager()
         {
 
@@ -33,18 +34,18 @@ namespace EsoftPortalMvc.Services.UserAdministration
             Mapper.CreateMap<tbl_users, UserDetailsView>();
 
             List<tbl_users> branchUsers = mainDb.tbl_users.OrderBy(x => x.LoginCode).ToList();
-            List<UserDetailsView> userdetails = Mapper.Map<List<UserDetailsView>>(branchUsers);            
+            List<UserDetailsView> userdetails = Mapper.Map<List<UserDetailsView>>(branchUsers);
             var userRoles = mainDb.Tbl_UserRoles.ToList();
 
-           
+
             var singleRole = userRoles.FirstOrDefault();
 
             int count = 0;
             foreach (var item in userdetails)
             {
-               
+
                 singleRole = userRoles.FirstOrDefault(x => x.RoleCode == item.UserRole);
-                               
+
                 if (singleRole != null)
                 {
                     userdetails[count].RoleName = ValueConverters.ConvertNullToEmptyString(singleRole.RoleName);
@@ -64,49 +65,10 @@ namespace EsoftPortalMvc.Services.UserAdministration
             return user;//Mapper.Map<List<UserDetailsView>>(user);
         }
 
-       
-
-        public List<TellerAccountView> TellerAccountDetails(string userID)
-        {
-            List<TellerAccountView> tellerAccount = new List<TellerAccountView>();
-            var teller = mainDb.tbl_TellerAccounts.FirstOrDefault(x => x.LoginCode == userID);
-            if (teller != null)
-            {
-                tellerAccount.Add(new TellerAccountView
-                {
-                    LoginCode = teller.LoginCode,
-                    TellerAccountNo = teller.TellerAccountNo,
-                    AuthorisedBranch = ""
-                });
-            }
-            return tellerAccount;
-        }
-
-        // used By EsoftPortalMvc.Services.Accounts DirectLedgerManager.CreateTellerPayment
-        // userBranch can be empty or specify actual branch to filter
-        public List<GlAccountsView> GetAllTellers(string userBranch = "")
-        {
-            List<GlAccountsView> glview = new List<GlAccountsView>();
-            glview = (from users in mainDb.tbl_users
-                      join tellerAccounts in mainDb.tbl_TellerAccounts on users.LoginCode equals tellerAccounts.LoginCode
-                      join branches in mainDb.BranchSettings on users.UserBranch equals branches.BranchCode into branch
-                      from br in branch.DefaultIfEmpty()
-                      where (users.UserBranch == userBranch || userBranch == "")
-                      select new GlAccountsView
-                      {
-                          GlAccountNo = tellerAccounts.TellerAccountNo.Trim(),
-                          GlName = tellerAccounts.TellerAccountNo.Trim() + " " + users.FullName.Trim() + " ( " + (br == null ? string.Empty : br.Name.Trim()) + ")",
-                          GlBalance = 0.00
-                      }).OrderBy(x => x.GlAccountNo).ToList();
-
-            return glview;
-        }
-
-
-        public string Login(string userName, string password, string userIpAddress)
+        public string Login(string customerNo, string password, string userIpAddress)
         {
             string loginResult = string.Empty;
-            var user = mainDb.tbl_users.Where(p => p.LoginName == userName);
+            var user = mainDb.tbl_PortalMembers.Where(p => p.CustomerNo == customerNo);
 
             if (user == null || user.Count() != 1)
             {
@@ -114,15 +76,15 @@ namespace EsoftPortalMvc.Services.UserAdministration
             }
             else
             {
-                password = EncryptPassword(userName, password);
-                string savedPassword = user.FirstOrDefault().WebPassword;
+                password = EncryptPassword(customerNo, password);
+                string savedPassword = user.FirstOrDefault().Password;
                 if (string.Compare(savedPassword, password) != 0)
                 {
                     loginResult = "Wrong User name/Password Combination!";
                 }
                 else
                 {
-                    string defaultpassword = EncryptPassword(userName, "Password");
+                    string defaultpassword = EncryptPassword(customerNo, "Password");
                     if (defaultpassword == password)
                     {
                         loginResult = "CHANGEPASSWORD";
@@ -131,7 +93,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
                     SessionVariables.SetUserDetails(user.FirstOrDefault(), mainDb, userIpAddress);
                     if (loginResult == "CHANGEPASSWORD")
                     {
-                        UserSession.Current.userDetails.AccessRights = ""; // Disable all rights user needs to change password
+                        // Disable all rights user needs to change password
                         UserSession.Current.UserMenuIds.Clear();// Disable all rights user needs to change password
                     }
 
@@ -260,15 +222,15 @@ namespace EsoftPortalMvc.Services.UserAdministration
                 String updateQuery = "UPDATE tbl_users " +
                         "SET LoginName = '" + ValueConverters.format_sql_string(userDetails.user.LoginName) + "'," +
                         "AccountDisabled = '" + userDetails.user.AccountDisabled + "'," +
-                         "FullName = '" + ValueConverters.format_sql_string(userDetails.user.FullName) + "'," +                        
-                         "EmailID = '" + ValueConverters.format_sql_string(userDetails.user.EmailID) + "'," +                         
-                         "UserBranch = '" + ValueConverters.format_sql_string(userDetails.user.UserBranch) + "'," +                         
-                         "UserRole = '" + ValueConverters.format_sql_string(userDetails.user.UserRole) + "'," +                         
+                         "FullName = '" + ValueConverters.format_sql_string(userDetails.user.FullName) + "'," +
+                         "EmailID = '" + ValueConverters.format_sql_string(userDetails.user.EmailID) + "'," +
+                         "UserBranch = '" + ValueConverters.format_sql_string(userDetails.user.UserBranch) + "'," +
+                         "UserRole = '" + ValueConverters.format_sql_string(userDetails.user.UserRole) + "'," +
                          "LoginTime_From = '" + ValueConverters.format_sql_string(userDetails.user.LoginTime_From) + "'," +
                          "LoginTime_To = '" + ValueConverters.format_sql_string(userDetails.user.LoginTime_To) + "'," +
                          "Login_Expiry = '" + ValueConverters.FormatSqlDate(userDetails.user.Login_Expiry) + "'," +
                          "EmploymentNumber = '" + ValueConverters.format_sql_string(userDetails.user.EmploymentNumber) + "'," +
-                         "LoginMachine = '" + ValueConverters.format_sql_string(userDetails.user.LoginMachine) + "'," +                         
+                         "LoginMachine = '" + ValueConverters.format_sql_string(userDetails.user.LoginMachine) + "'," +
                          " WHERE tbl_usersID = '" + userDetails.user.tbl_usersID + "' ";
 
                 List<PostTransactionsViewModel> transList = new List<PostTransactionsViewModel>();
@@ -325,12 +287,12 @@ namespace EsoftPortalMvc.Services.UserAdministration
                 // Audit Changes
                 AuditTrail.CreateTrailPostingRecord(transList, transactionID, "9900",
                     " User Password Reset for " + ValueConverters.format_sql_string(userDetails.LoginName) + " " + ValueConverters.format_sql_string(userDetails.FullName)
-                    , 0, "USERMGMT", UserSession.Current.userDetails.LoginCode, false);
+                    , 0, "USERMGMT", UserSession.Current.userDetails.CustomerNo, false);
 
                 AuditTrail.CreateTrailPostingRecord(transList, transactionID, "9900",
                     " Your User Password Was Reset By " +
-                    ValueConverters.format_sql_string(UserSession.Current.userDetails.LoginName) + " " + ValueConverters.format_sql_string(UserSession.Current.userDetails.FullName)
-                    , 0, "USERMGMT", UserSession.Current.userDetails.LoginCode, false);
+                    ValueConverters.format_sql_string(UserSession.Current.userDetails.CustomerNo) + " " + ValueConverters.format_sql_string(UserSession.Current.userDetails.CustomerName)
+                    , 0, "USERMGMT", UserSession.Current.userDetails.CustomerNo, false);
 
                 NotifyUserOnPasswordChange(userDetails, transList, transactionID, transEngine);
                 string results = transEngine.Post_Transactions(transList, transactionID, false, false);
@@ -375,7 +337,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
                     savedSettings.PasswordExpiresAfter.ToString(), passwordSettings.PasswordExpiresAfter.ToString(),
                     ValueConverters.ConvertNullToBool(savedSettings.AlphaNumeric), ValueConverters.ConvertNullToBool(passwordSettings.AlphaNumeric),
                     passwordSettings.PasswordExpiresAfter.ToString(), passwordSettings.PasswordExpiresAfter.ToString(),
-                    passwordSettings.MinimumPasswordLength.ToString(), passwordSettings.MinimumPasswordLength.ToString()), 0, "PWDSETTINGS", UserSession.Current.userDetails.LoginCode, false);
+                    passwordSettings.MinimumPasswordLength.ToString(), passwordSettings.MinimumPasswordLength.ToString()), 0, "PWDSETTINGS", UserSession.Current.userDetails.CustomerNo, false);
 
                 string results = transEngine.Post_Transactions(transList, transactionID, false, false);
                 updateResult = results == SessionVariables.TransactionPostedSuccessfully;
@@ -405,7 +367,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
                     if (newValue != null)
                     {
                         string activity = " Captured Value " + propertyName.Trim() + newValue.ToString().Trim();
-                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.LoginCode, activity, 0, user.LoginName, "9900", false);
+                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.CustomerNo, activity, 0, user.LoginName, "9900", false);
                     }
                 }
             }
@@ -422,160 +384,20 @@ namespace EsoftPortalMvc.Services.UserAdministration
                     if (originalValue != null && newValue == null && !originalValue.Equals(newValue))
                     {
                         string activity = " Changed " + propertyName.Trim() + " From " + originalValue.ToString().Trim() + " To ";
-                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.LoginCode, activity, 0, user.LoginName, "9900", false);
+                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.CustomerNo, activity, 0, user.LoginName, "9900", false);
                     }
                     else if (originalValue == null && newValue != null)
                     {
                         string activity = " Changed " + propertyName.Trim() + " From  To " + newValue.ToString().Trim();
-                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.LoginCode, activity, 0, user.LoginName, "9900", false);
+                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.CustomerNo, activity, 0, user.LoginName, "9900", false);
                     }
                     else if (originalValue != null && newValue == null)
                     {
                         string activity = " Changed " + propertyName.Trim() + " From " + originalValue.ToString().Trim() + " To ";
-                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.LoginCode, activity, 0, user.LoginName, "9900", false);
+                        auditTrail.CreateTrailRecord(mainDb, UserSession.Current.userDetails.CustomerNo, activity, 0, user.LoginName, "9900", false);
                     }
                 }
             }
-        }
-
-        //public TellersAccountsViewModel GetTellersAccounts()
-        //{
-        //    List<TellersAccountsDetails> tellersAccountsDetails = new List<TellersAccountsDetails>();
-        //    var accountlist = (from accounts in mainDb.tbl_TellerAccounts
-        //                       join branch in mainDb.BranchSettings on accounts.AuthorisedBranch equals branch.BranchCode
-        //                       join users in mainDb.tbl_users on accounts.LoginCode equals users.LoginCode
-        //                       select new TellersAccountsDetails
-        //                       {
-        //                           Code = accounts.LoginCode,
-        //                           GlAccount = accounts.TellerAccountNo,
-        //                           TellerName = users.FullName,
-        //                           BranchName = branch.Name,
-        //                           TellerAccountsID = accounts.tbl_TellerAccountsID.ToString(),
-        //                       }).ToList();
-        //    if (accountlist != null)
-        //    {
-        //        tellersAccountsDetails = accountlist;
-        //    }
-        //    TellersAccountsViewModel tellersAccountsViewModel = new TellersAccountsViewModel();
-        //    tellersAccountsViewModel.TellerAccount = tellersAccountsDetails;
-        //    return tellersAccountsViewModel;
-        //}
-
-
-        //    public SingleTellerViewModel GetSingleTeller(Guid? id, GlAccountsManager glAccountsManager)
-        //    {           
-
-
-
-        //        SingleTellerViewModel singleTellerViewModel = new SingleTellerViewModel();
-        //        GetTellerProperties(glAccountsManager, singleTellerViewModel);
-
-        //        singleTellerViewModel.SingleTellerRecord = (from accounts in mainDb.tbl_TellerAccounts
-        //                                                    join users in mainDb.tbl_users on accounts.LoginCode equals users.LoginCode into tempAccount
-        //                                                    from user in tempAccount.DefaultIfEmpty()
-        //                                                    where accounts.tbl_TellerAccountsID == id
-        //                                                    select new SingleTellerRecord
-        //                                                    {
-        //                                                        TellerAccountsID = accounts.tbl_TellerAccountsID,
-        //                                                        TellerAccountNo = accounts.TellerAccountNo,
-        //                                                        AuthorisedBranch = accounts.AuthorisedBranch,
-        //                                                        UserRecordId= (user==null?Guid.Empty:user.tbl_usersID),
-        //                                                        LoginCode = (user == null ? string.Empty : user.FullName),
-        //                                                        ShortageAccount = (user == null ? string.Empty : user.Teller_Shortage_GlAccount),
-        //                                                        ExcessAcount = (user == null ? string.Empty : user.Teller_Excess_GlAccount),
-        //                                                    }).FirstOrDefault();
-
-        //        return singleTellerViewModel;
-        //    }
-
-        //    public void GetTellerProperties(GlAccountsManager glaccounts, SingleTellerViewModel singleTellerViewModel)
-        //    {
-        //        singleTellerViewModel.TellerAccounts = new List<System.Web.Mvc.SelectListItem>();
-        //        singleTellerViewModel.Branches = mainDb.BranchSettings.Select(x =>
-        //            new SelectListItem { Value = x.BranchCode, Text = x.Name, Selected = false }).ToList();
-        //        singleTellerViewModel.GlAccounts = glaccounts.GlAccounts(mainDb).ToList();
-        //    }
-
-
-
-
-
-
-        //    public bool UpdateTellerDetails(SingleTellerViewModel tellerDetails)
-        //    {
-        //        return true;
-        //    }
-
-
-        public TellerViewModel GetTellerDetails()
-        {
-            GlAccountsManager glAccountsManager = new GlAccountsManager();
-            TellerViewModel tellerViewModel = new TellerViewModel();
-
-
-            var accounts = glAccountsManager.GlAccounts(mainDb);
-
-            tellerViewModel.Users = (from userslist in mainDb.tbl_users
-                                     where !(mainDb.tbl_TellerAccounts.Any(x => x.LoginCode == userslist.LoginCode))
-                                     select userslist).ToList();
-
-
-            
-            tellerViewModel.TellerAccounts = accounts;
-            tellerViewModel.ExcessAccounts = accounts;
-            tellerViewModel.ShortageAccounts = accounts;
-
-            return tellerViewModel;
-        }
-
-        public bool CreateTeller(TellerViewModel tellerDetails)
-        {
-            bool insertResult = false;
-
-            if (tellerDetails != null)
-            {
-                List<PostTransactionsViewModel> transList = new List<PostTransactionsViewModel>();
-                string transactionID = ValueConverters.RandomString(10);
-                PostTransactions transEngine = new PostTransactions();
-                string tbl_TellerAccountsID = Guid.NewGuid().ToString();
-                string insertTeller = "INSERT INTO tbl_TellerAccounts (LoginCode,TellerAccountNo,AuthorisedBranch,tbl_TellerAccountsID) VALUES ('" + ValueConverters.format_sql_string(tellerDetails.User) + "','" + ValueConverters.format_sql_string(tellerDetails.TellerAccount.Trim()) + "','" + ValueConverters.format_sql_string(tellerDetails.Branch) + "','" + tbl_TellerAccountsID + "');";
-                String updateUserExcessShortageAc = "UPDATE tbl_users SET Teller_Excess_GlAccount = '" + ValueConverters.format_sql_string(tellerDetails.ExcessAccount.Trim()) + "', Teller_Shortage_GlAccount = '" + ValueConverters.format_sql_string(tellerDetails.ShortageAccount.Trim()) + "' WHERE LoginCode = '" + ValueConverters.format_sql_string(tellerDetails.User) + "';";
-                String queryBatch = insertTeller + updateUserExcessShortageAc;
-
-                transEngine.Generate_Sql_Statement(transList, transactionID, queryBatch);
-
-                string results = transEngine.Post_Transactions(transList, transactionID, false, false);
-
-                insertResult = results == SessionVariables.TransactionPostedSuccessfully;
-
-            }
-
-            return insertResult;
-        }
-
-        public bool UpdateTellerDetails(SingleTellerViewModel tellerDetails)
-        {
-            bool updateResult = false;
-
-            if (!String.IsNullOrEmpty(tellerDetails.SingleTellerRecord.UserRecordId.ToString()) && !String.IsNullOrEmpty(tellerDetails.SingleTellerRecord.TellerAccountsID.ToString()))
-            {
-                List<PostTransactionsViewModel> transList = new List<PostTransactionsViewModel>();
-                string transactionID = ValueConverters.RandomString(10);
-                PostTransactions transEngine = new PostTransactions();
-
-                string updateUser = "UPDATE tbl_users set Teller_Excess_GlAccount = '" + ValueConverters.format_sql_string(tellerDetails.SingleTellerRecord.ExcessAcount.Trim()) + "' , Teller_Shortage_GlAccount = '" + ValueConverters.format_sql_string(tellerDetails.SingleTellerRecord.ShortageAccount.Trim()) + "' WHERE tbl_usersID = '" + ValueConverters.format_sql_string(tellerDetails.SingleTellerRecord.UserRecordId.ToString()) + "'; ";
-                String updateTellerAccount = "UPDATE tbl_TellerAccounts set TellerAccountNo ='" + ValueConverters.format_sql_string(tellerDetails.SingleTellerRecord.TellerAccountNo.Trim()) + "', AuthorisedBranch = '" + ValueConverters.format_sql_string(tellerDetails.SingleTellerRecord.AuthorisedBranch) + "' where tbl_TellerAccountsID = '" + ValueConverters.format_sql_string(tellerDetails.SingleTellerRecord.TellerAccountsID.ToString()) + "'; ";
-                String queryBatch = updateTellerAccount + updateUser;
-
-                transEngine.Generate_Sql_Statement(transList, transactionID, queryBatch);
-
-                string results = transEngine.Post_Transactions(transList, transactionID, false, false);
-
-                updateResult = results == SessionVariables.TransactionPostedSuccessfully;
-
-            }
-
-            return updateResult;
         }
 
         public bool ChangeUserPassword(ChangePasswordViewModel newPasswordDetails)
@@ -588,19 +410,19 @@ namespace EsoftPortalMvc.Services.UserAdministration
             }
             try
             {
-                Guid userId = UserSession.Current.userDetails.tbl_usersID;
-                var userDetails = mainDb.tbl_users.FirstOrDefault(x => x.tbl_usersID == userId);
+                Guid userId = UserSession.Current.userDetails.tbl_CustomerId??new Guid();
+                var userDetails = mainDb.tbl_PortalMembers.FirstOrDefault(x => x.tbl_CustomerId == userId);
                 if (userDetails != null)
                 {
-                    string password = EncryptPassword(userDetails.LoginName, newPasswordDetails.OldPassword);
-                    string savedPassword = userDetails.WebPassword;
+                    string password = EncryptPassword(userDetails.CustomerNo, newPasswordDetails.OldPassword);
+                    string savedPassword = userDetails.Password;
                     if (string.Compare(savedPassword, password) != 0)
                     {
                         _validatonDictionary.AddError("OldPassword", "Wrong Old Password");
                     }
                     else
                     {
-                        string newPassword = EncryptPassword(userDetails.LoginName, newPasswordDetails.ConfirmPassword);
+                        string newPassword = EncryptPassword(userDetails.CustomerNo, newPasswordDetails.ConfirmPassword);
                         var passwordSettings = mainDb.tbl_PasswordSettings.FirstOrDefault();
                         if (passwordSettings != null)
                         {
@@ -622,7 +444,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
                             }
 
                             DbDataReader reader = DbConnector.GetSqlReader(
-                                " select TrxDate,PassValue from tbl_PasswordHistory where Logincode='" + userDetails.LoginCode + "' and PassValue ='" + newPassword.Trim() + "'" +
+                                " select TrxDate,PassValue from tbl_PasswordHistory where Logincode='" + userDetails.CustomerNo + "' and PassValue ='" + newPassword.Trim() + "'" +
                                 " and TrxDate>=DateAdd(DD,-" + passwordSettings.ReusePasswordAfter.ToString().Trim() + ",GETDATE()) order by TrxDate desc");
                             if (reader.HasRows)
                             {
@@ -641,14 +463,14 @@ namespace EsoftPortalMvc.Services.UserAdministration
                             transEngine.Generate_Sql_Statement(transList, transactionID, "UPDATE tbl_users SET WebPassword = '" + newPassword + "' WHERE tbl_usersID = '" + userId + "' ");
                             transEngine.Generate_Sql_Statement(transList, transactionID,
                                 string.Format("INSERT INTO tbl_PasswordHistory(trxdate,LoginCode,passvalue)values(getdate(),'{0}','{1}')",
-                                userDetails.LoginCode, newPassword));
+                                userDetails.CustomerNo, newPassword));
 
                             // Audit Changes
                             AuditTrail.CreateTrailPostingRecord(transList, transactionID, "9900",
-                                " Your User Password Has Been Changed " + ValueConverters.format_sql_string(userDetails.LoginName) + " " + ValueConverters.format_sql_string(userDetails.FullName)
-                                , 0, "USERMGMT", UserSession.Current.userDetails.LoginCode, false);
+                                " Your User Password Has Been Changed " + ValueConverters.format_sql_string(userDetails.CustomerName) + " " + ValueConverters.format_sql_string(userDetails.CustomerName)
+                                , 0, "USERMGMT", UserSession.Current.userDetails.CustomerNo, false);
 
-                            NotifyUserOnPasswordChange(userDetails, transList, transactionID, transEngine);
+                            //NotifyUserOnPasswordChange(userDetails, transList, transactionID, transEngine);
 
                             string results = transEngine.Post_Transactions(transList, transactionID, false, false);
                             updateResult = results == SessionVariables.TransactionPostedSuccessfully;
@@ -824,63 +646,6 @@ namespace EsoftPortalMvc.Services.UserAdministration
             return updateResult;
         }
 
-        public TellersAccountsViewModel GetTellersAccounts()
-        {
-            List<TellersAccountsDetails> tellersAccountsDetails = new List<TellersAccountsDetails>();
-            var accountlist = (from accounts in mainDb.tbl_TellerAccounts
-                              // join branch in mainDb.BranchSettings on accounts.AuthorisedBranch equals branch.BranchCode
-                               join users in mainDb.tbl_users on accounts.LoginCode equals users.LoginCode
-                               orderby users.LoginCode
-                               orderby users.UserBranch
-                               orderby users.AccountDisabled
-                               select new TellersAccountsDetails
-                               {
-                                   Code = accounts.LoginCode,
-                                   GlAccount = accounts.TellerAccountNo.Trim(),
-                                   TellerName = users.FullName,
-                                   //BranchName = branch.Name,
-                                   TellerAccountsID = accounts.tbl_TellerAccountsID.ToString(),
-                               }).ToList();
-            if (accountlist != null)
-            {
-                tellersAccountsDetails = accountlist;
-            }
-            TellersAccountsViewModel tellersAccountsViewModel = new TellersAccountsViewModel();
-            tellersAccountsViewModel.TellerAccount = tellersAccountsDetails;
-            return tellersAccountsViewModel;
-        }
-
-        public void GetTellerProperties(GlAccountsManager glaccounts, SingleTellerViewModel singleTellerViewModel)
-        {
-            singleTellerViewModel.TellerAccounts = new List<System.Web.Mvc.SelectListItem>();
-            singleTellerViewModel.Branches = mainDb.BranchSettings.Select(x =>
-                new SelectListItem { Value = x.BranchCode, Text = x.Name, Selected = false }).ToList();
-            singleTellerViewModel.GlAccounts = glaccounts.GlAccountsTrimmed(mainDb).ToList();
-        }
-
-        public SingleTellerViewModel GetSingleTeller(Guid? id, GlAccountsManager glAccountsManager)
-        {
-            SingleTellerViewModel singleTellerViewModel = new SingleTellerViewModel();
-            GetTellerProperties(glAccountsManager, singleTellerViewModel);
-
-            singleTellerViewModel.SingleTellerRecord = (from accounts in mainDb.tbl_TellerAccounts
-                                                        join users in mainDb.tbl_users on accounts.LoginCode equals users.LoginCode into tempAccount
-                                                        from user in tempAccount.DefaultIfEmpty()
-                                                        where accounts.tbl_TellerAccountsID == id
-                                                        select new SingleTellerRecord
-                                                        {
-                                                            TellerAccountsID = accounts.tbl_TellerAccountsID,
-                                                            TellerAccountNo = accounts.TellerAccountNo.Trim(),
-                                                            AuthorisedBranch = string.Empty,
-                                                            UserRecordId = (user == null ? Guid.Empty : user.tbl_usersID),
-                                                            LoginCode = (user == null ? string.Empty : user.FullName),
-                                                            ShortageAccount = (user == null ? string.Empty :"" ),
-                                                            ExcessAcount = (user == null ? string.Empty : ""),
-                                                        }).FirstOrDefault();
-
-            return singleTellerViewModel;
-        }
-
         public List<UserRoleAssignment> GetOtherUserRoles(Guid? id)
         {
             List<UserRoleAssignment> userOtherRoles = new List<UserRoleAssignment>();
@@ -969,7 +734,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
         }
 
         public UserAdministrationViewModel NewUser(UserAdministrationViewModel userAdministrationViewModel)
-        {            
+        {
             userAdministrationViewModel.userRoles = GetUserRoles();
             userAdministrationViewModel.user = new tbl_users();
 
@@ -978,7 +743,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
 
         public ReportViewer SystemUsersReport()
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -988,14 +753,14 @@ namespace EsoftPortalMvc.Services.UserAdministration
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsSystemUsers", users));
 
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
 
         public ReportViewer SystemUSerReport(Guid? userId)
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -1006,14 +771,14 @@ namespace EsoftPortalMvc.Services.UserAdministration
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsSystemUser", user));
 
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
 
         public ReportViewer UserRolesReport()
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -1023,7 +788,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsUserRoles", userRoles));
 
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
@@ -1045,7 +810,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
 
         public ReportViewer SingleRoleRightsReport(Guid? roleId)
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -1062,7 +827,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsSingleUserRole", singleUserRole));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsRoleRights", roleRights));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
@@ -1085,7 +850,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
 
         public ReportViewer UserRightsReport(Guid? userId)
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -1103,7 +868,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsSingleUser", singleUser));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsUserRights", userRights));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
@@ -1145,7 +910,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
 
         public ReportViewer UserRolesReport(Guid? userId)
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -1163,7 +928,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsUserRoles", userRoles));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsPrimaryRole", userPrimaryRoles));
 
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
@@ -1182,7 +947,7 @@ namespace EsoftPortalMvc.Services.UserAdministration
 
         public ReportViewer UserPasswordSettingsReport()
         {
-            List<Company> company = mainDb.Company.ToList();
+            List<Company> company = mainDb.Companies.ToList();
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
@@ -1193,66 +958,11 @@ namespace EsoftPortalMvc.Services.UserAdministration
 
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsPasswordSettings", userPasswordSettings));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
+            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.CustomerNo);
             viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
             return viewer;
         }
-
-        public ReportViewer TellerAccountsReport()
-        {
-            List<Company> company = mainDb.Company.ToList();
-            ReportViewer viewer = new ReportViewer();
-            viewer.ProcessingMode = ProcessingMode.Local;
-
-            List<TellersAccountsDetails> tellers = DsTellerAccounts();
-
-            viewer.LocalReport.ReportPath = "Reports/SystemSettings/TellerAccountsReport.rdlc";
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("DsTellerAccounts", tellers));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
-            viewer.LocalReport.SetParameters(new ReportParameter[] { param1 });
-            return viewer;
-        }
-
-        public List<TellersAccountsDetails> DsTellerAccounts()
-        {
-            //List<TellersAccountsViewModel> tellerAccountsList = new List<TellersAccountsViewModel>();
-
-            TellersAccountsViewModel tellersAccounts = GetTellersAccounts();
-
-            return tellersAccounts.TellerAccount;
-        }
-
-
-
-        public ReportViewer SingleTellerAccountsReport(Guid? tellerID)
-        {
-            GlAccountsManager glAccountsManager = new GlAccountsManager();
-            SingleTellerViewModel singleTellerViewModel = GetSingleTeller(tellerID, glAccountsManager);
-            singleTellerViewModel.SingleTellerRecord.AuthorisedBranch = singleTellerViewModel.Branches.Where(x => x.Value == singleTellerViewModel.SingleTellerRecord.AuthorisedBranch).Select(x => x.Text).FirstOrDefault();
-            singleTellerViewModel.SingleTellerRecord.ShortageAccount = singleTellerViewModel.GlAccounts.Where(x => x.GlAccountNo == singleTellerViewModel.SingleTellerRecord.ShortageAccount).Select(x => x.GlName).FirstOrDefault();
-            singleTellerViewModel.SingleTellerRecord.ExcessAcount = singleTellerViewModel.GlAccounts.Where(x => x.GlAccountNo == singleTellerViewModel.SingleTellerRecord.ExcessAcount).Select(x => x.GlName).FirstOrDefault();
-            singleTellerViewModel.SingleTellerRecord.TellerAccountNo = singleTellerViewModel.GlAccounts.Where(x => x.GlAccountNo == singleTellerViewModel.SingleTellerRecord.TellerAccountNo).Select(x => x.GlName).FirstOrDefault();
-
-            List<Company> company = mainDb.Company.ToList();
-            ReportViewer viewer = new ReportViewer();
-            viewer.ProcessingMode = ProcessingMode.Local;
-
-
-            viewer.LocalReport.ReportPath = "Reports/SystemSettings/SingleTellerAccountReport.rdlc";
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
-            ReportParameter param1 = new ReportParameter("paramUserName", UserSession.Current.userDetails.LoginName);
-            ReportParameter param2 = new ReportParameter("LoginName", singleTellerViewModel.SingleTellerRecord.LoginCode);
-            ReportParameter param3 = new ReportParameter("TellerAccountNo", singleTellerViewModel.SingleTellerRecord.TellerAccountNo);
-            ReportParameter param4 = new ReportParameter("AuthorisedBranch", singleTellerViewModel.SingleTellerRecord.AuthorisedBranch);
-            ReportParameter param5 = new ReportParameter("ExcessAcount", singleTellerViewModel.SingleTellerRecord.ExcessAcount);
-            ReportParameter param6 = new ReportParameter("ShortageAccount", singleTellerViewModel.SingleTellerRecord.ShortageAccount);
-            viewer.LocalReport.SetParameters(new ReportParameter[] { param1, param2, param3, param4, param5, param6 });
-            return viewer;
-        }
-
-
     }
 
-    
+
 }

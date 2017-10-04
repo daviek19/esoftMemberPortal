@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
@@ -64,8 +65,8 @@ namespace EsoftPortalMvc.Services.Common
 
         private static void GetCompanyInfo()
         {
-            Esoft_EstateEntities mainDb = new Esoft_EstateEntities();
-            var company = mainDb.Company.FirstOrDefault();
+            EsoftPortalEntities mainDb = new EsoftPortalEntities();
+            var company = mainDb.Companies.FirstOrDefault();
             CompanyName = company.CompanyName;
             CompanyAddress = company.CompanyAddress;
             CompanyAddress1 = company.CompanyEmail;
@@ -99,37 +100,23 @@ namespace EsoftPortalMvc.Services.Common
             }
         }
 
-        public static void SetUserDetails(tbl_users user, Esoft_EstateEntities mainDb, string machineName)
+        public static void SetUserDetails(tbl_PortalMembers tbl_PortalMember, EsoftPortalEntities mainDb, string machineName)
         {
             //SessionVariables.LoginCode = user.LoginCode;
             //SessionVariables.AccessRights = user.AccessRights;
             //SessionVariables.UserId = user.tbl_usersID;
             //SessionVariables.LoginName = user.LoginName;
             //SessionVariables.UserBranch = user.UserBranch;
-
-            Mapper.CreateMap<tbl_users, UserDetailsView>();
-
-            UserDetailsView userDetails = Mapper.Map<UserDetailsView>(user);
-
-            UserSession.Current.userDetails = new UserDetailsView();
-            UserSession.Current.userDetails = userDetails;
+            UserSession.Current.userDetails = new tbl_PortalMembers() ;
+            UserSession.Current.userDetails = tbl_PortalMember;
             UserSession.Current.MachineName = machineName;
-            var tellerAccountx = mainDb.tbl_TellerAccounts.FirstOrDefault(x => x.LoginCode == user.LoginCode);
-            if (tellerAccountx != null)
-            {
-                UserSession.Current.userDetails.TellerAccountNo = tellerAccountx.TellerAccountNo.ConvertNullToEmptyString();
-            }
-
-           
             MenuManager menuMgr = new MenuManager();
-
-            UserSession.Current.UserMenuIds = menuMgr.GetUserMenuItems(UserSession.Current.userDetails.AccessRights);
-            UserSession.Current.UserImage = @String.Format(SessionVariables.UserImagePath + UserSession.Current.userDetails.LoginCode.Trim() + ".png");
-            UserSession.Current.Teller_Footer_Text = mainDb.Company.FirstOrDefault().Teller_Slip_FooterText;
-            UserSession.Current.userDetails.LoginCode = UserSession.Current.userDetails.LoginCode.ToUpper();
+           // UserSession.Current.UserImage = @String.Format(SessionVariables.UserImagePath + UserSession.Current.userDetails.CustomerNo.Trim() + ".png");
+            UserSession.Current.Teller_Footer_Text = mainDb.Companies.FirstOrDefault().Teller_Slip_FooterText;
+            UserSession.Current.userDetails.CustomerNo = UserSession.Current.userDetails.CustomerNo.ToUpper();
             AuditTrail audit = new AuditTrail();
 
-            audit.CreateTrailRecord(mainDb, UserSession.Current.userDetails.LoginCode, "Login to System (Web)", 0, UserSession.Current.userDetails.LoginName, "LOGIN", true);
+            audit.CreateTrailRecord(mainDb, UserSession.Current.userDetails.CustomerNo, "Login to System (Web)", 0, UserSession.Current.userDetails.CustomerNo, "LOGIN", true);
 
         }
 
@@ -138,7 +125,7 @@ namespace EsoftPortalMvc.Services.Common
             return ValueConverters.Round05(transactionAmount * SessionVariables.Excise_Duty_Rate * .01);
         }
 
-      
+
 
         public static List<Company> CompanyStaticData()
         {

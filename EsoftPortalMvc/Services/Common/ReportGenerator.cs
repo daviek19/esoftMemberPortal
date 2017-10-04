@@ -4,34 +4,35 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Common
 {
 
     public interface IReportGenerator {
-        
+
        ReportViewer  GenerateReport (ReportModel reportModel);
-    
-    
+
+
     }
     public class ReportGenerator : IReportGenerator
     {
-        public Esoft_EstateEntities mainDb;
+        public EsoftPortalEntities mainDb;
         public ReportGenerator() {
-            mainDb = new Esoft_EstateEntities();
+            mainDb = new EsoftPortalEntities();
         }
         public  ReportViewer  GenerateReport (ReportModel reportModel)
         {
             ReportViewer viewer = new ReportViewer();
-            
-            List<Company> company = mainDb.Company.ToList();
+
+            List<Company> company = mainDb.Companies.ToList();
             viewer.ProcessingMode = ProcessingMode.Local;
             viewer.LocalReport.ReportPath = reportModel.ReportPath;
             ReportParameter [] reportParaters = new List<ReportParameter>().ToArray();
-            reportParaters[0]=new ReportParameter("paramUserName",EsoftPortalMvc.Services.Common.UserSession.Current.userDetails.LoginName);
-           
-            
-            
+            reportParaters[0]=new ReportParameter("paramUserName",EsoftPortalMvc.Services.Common.UserSession.Current.userDetails.CustomerNo);
+
+
+
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DsCompany", company));
             Int16 count = 0;
             foreach (var reportparameter in reportModel.ReportParameters.Keys) {
@@ -39,8 +40,8 @@ namespace EsoftPortalMvc.Services.Common
             }
             viewer.LocalReport.SetParameters( reportParaters);
             return viewer;
-        
-        
+
+
         }
 
 

@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Services.Accounts
 {
@@ -16,7 +17,7 @@ namespace EsoftPortalMvc.Services.Accounts
     {
         //ToDo: Add Gl Statement
         private AuditTrail auditTrail = new AuditTrail();
-        private Esoft_EstateEntities mainDb = new Esoft_EstateEntities();
+        private EsoftPortalEntities mainDb = new EsoftPortalEntities();
         private IValidationDictionary _validationDictionary;
         public GlAccountsManager()
         {
@@ -26,7 +27,7 @@ namespace EsoftPortalMvc.Services.Accounts
         {
             _validationDictionary = validationDictionary;
         }
-        public string AddGlAccount(tbl_GlAccounts glaccounts, Esoft_EstateEntities db)
+        public string AddGlAccount(tbl_GlAccounts glaccounts, EsoftPortalEntities db)
         {
 
             string result = "";
@@ -37,7 +38,7 @@ namespace EsoftPortalMvc.Services.Accounts
 
                 string msg = "Added New Gl Account " + ValueConverters.ConvertNullToEmptyString(glaccounts.GlAccountNo) + " Name " + ValueConverters.ConvertNullToEmptyString(glaccounts.GlName);
 
-                auditTrail.CreateTrailRecord(db, UserSession.Current.userDetails.LoginCode, msg, 0, "GLACCOUNTS", "6001A", false);
+                auditTrail.CreateTrailRecord(db, UserSession.Current.userDetails.CustomerNo, msg, 0, "GLACCOUNTS", "6001A", false);
 
                 db.SaveChanges();
                 GetCached(db);
@@ -51,7 +52,7 @@ namespace EsoftPortalMvc.Services.Accounts
             return result;
         }
 
-        public bool UpdateGlAccount(tbl_GlAccounts glaccounts, Esoft_EstateEntities db)
+        public bool UpdateGlAccount(tbl_GlAccounts glaccounts, EsoftPortalEntities db)
         {
             bool success = true;
             if (glaccounts != null && CheckExistence(glaccounts, db))
@@ -60,7 +61,7 @@ namespace EsoftPortalMvc.Services.Accounts
 
                 string msg = "Amend  Gl Account No.: " + ValueConverters.ConvertNullToEmptyString(glaccounts.GlAccountNo) + " Name " + ValueConverters.ConvertNullToEmptyString(glaccounts.GlName);
 
-                auditTrail.CreateTrailRecord(db, UserSession.Current.userDetails.LoginCode, msg, 0, "GLACCOUNTS", "6001A", false);
+                auditTrail.CreateTrailRecord(db, UserSession.Current.userDetails.CustomerNo, msg, 0, "GLACCOUNTS", "6001A", false);
 
                 db.SaveChanges();
                 GetCached(db);
@@ -73,12 +74,12 @@ namespace EsoftPortalMvc.Services.Accounts
 
         }
 
-        public bool CheckExistence(tbl_GlAccounts glaccounts, Esoft_EstateEntities db)
+        public bool CheckExistence(tbl_GlAccounts glaccounts, EsoftPortalEntities db)
         {
             return !(db.tbl_GlAccounts.Any((x => x.tbl_GlAccountsID != glaccounts.tbl_GlAccountsID && x.GlAccountNo == glaccounts.GlAccountNo)));
         }
 
-        public IEnumerable<GlAccountsView> GlAccounts(Esoft_EstateEntities db)
+        public IEnumerable<GlAccountsView> GlAccounts(EsoftPortalEntities db)
         {
             List<GlAccountsView> GlRecords = GetCached(mainDb);
 
@@ -96,7 +97,7 @@ namespace EsoftPortalMvc.Services.Accounts
             return returnList.ToList();
         }
 
-        public IEnumerable<GlAccountsView> GlAccountsTrimmed(Esoft_EstateEntities db)
+        public IEnumerable<GlAccountsView> GlAccountsTrimmed(EsoftPortalEntities db)
         {
             List<GlAccountsView> GlRecords = GetCachedTrimmed(mainDb);
 
@@ -114,7 +115,7 @@ namespace EsoftPortalMvc.Services.Accounts
             return returnList.ToList();
         }
 
-        private static List<GlAccountsView> GetCached(Esoft_EstateEntities db)
+        private static List<GlAccountsView> GetCached(EsoftPortalEntities db)
         {
             const string glAccounts_cacheKey = "GlAccounts_cache";
             List<GlAccountsView> data = CachingProvider.Get<List<GlAccountsView>>(glAccounts_cacheKey);
@@ -133,7 +134,7 @@ namespace EsoftPortalMvc.Services.Accounts
             return data;
         }
 
-        private static List<GlAccountsView> GetCachedTrimmed(Esoft_EstateEntities db)
+        private static List<GlAccountsView> GetCachedTrimmed(EsoftPortalEntities db)
         {
             const string glAccounts_cacheKeyTrimmed = "GlAccounts_cache_trimmed";
             List<GlAccountsView> data = CachingProvider.Get<List<GlAccountsView>>(glAccounts_cacheKeyTrimmed);
@@ -376,7 +377,7 @@ namespace EsoftPortalMvc.Services.Accounts
             catch (Exception ex)
             {
                 singleGl.LedgerAccounts = new List<GlAccountsView>();
-                singleGl.BranchList = new List<BranchSettings>();
+                singleGl.BranchList = new List<BranchSetting>();
                 Utility.WriteErrorLog("SingleGlRecord", ref ex);
 
             }
@@ -456,7 +457,7 @@ namespace EsoftPortalMvc.Services.Accounts
             catch (Exception ex)
             {
                 singleGl.LedgerAccounts = new List<GlAccountsView>();
-                singleGl.BranchList = new List<BranchSettings>();
+                singleGl.BranchList = new List<BranchSetting>();
                 Utility.WriteErrorLog("SingleGlRecord", ref ex);
             }
             return singleGl;
@@ -487,7 +488,7 @@ namespace EsoftPortalMvc.Services.Accounts
                                          where d.TransactionDate >= glReportViewModel.StartDate && d.TransactionDate <= glReportViewModel.EndDate
                                          select new GeneralLedgerTransactionTrail
                                          {
-                                             AccountRef = d.AccountNo,                                           
+                                             AccountRef = d.AccountNo,
                                              CreditAmount = d.CreditAmount,
                                              DebitAmount = d.DebitAmount,
                                              GlAccountNo = d.GlAccountNo,
@@ -914,14 +915,14 @@ namespace EsoftPortalMvc.Services.Accounts
 
         public List<Company> GetCompanyData()
         {
-            var cinfo = mainDb.Company.ToList();
+            var cinfo = mainDb.Companies.ToList();
             return cinfo;
         }
 
-        
 
-        
-        
+
+
+
     }
 
     public class DsGlAccounts

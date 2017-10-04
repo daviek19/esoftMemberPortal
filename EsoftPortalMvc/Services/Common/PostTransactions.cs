@@ -10,6 +10,8 @@ using EsoftPortalMvc.Services.UserAdministration;
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
+using EstateManagementMvc;
+
 namespace EsoftPortalMvc.Services.Common
 {
     /// <summary>
@@ -71,7 +73,7 @@ namespace EsoftPortalMvc.Services.Common
             string referenceNo = ValueConverters.RandomString(7);
             try
             {
-                SqlDataReader reader = DbConnector.GetSqlReader("Exec GenerateReferenceNumber '" + ValueConverters.format_sql_string(docid) + "','" + UserSession.Current.userDetails.UserBranch + "'");
+                SqlDataReader reader = DbConnector.GetSqlReader("Exec GenerateReferenceNumber '" + ValueConverters.format_sql_string(docid) + "','" + UserSession.Current.MachineName + "'");
                 while (reader.Read())
                 {
                     referenceNo = reader["ReferenceNumber"].ToString();
@@ -241,7 +243,7 @@ namespace EsoftPortalMvc.Services.Common
            (List<PostTransactionsViewModel> transList, string m_current_posting_reference, string m_AccountNo, DateTime m_TransactionDate, string m_Narration,
            string m_Docid, string m_ReferenceNo, double m_DebitAmount,
    double m_CreditAmount, string m_BranchCode, string m_GlDebit, string m_GlCredit, string m_productCode, int loan_section, string transaction_groupid, string m_LoanReferenceNo,
-            Esoft_EstateEntities maindb = null)
+            EsoftPortalEntities maindb = null)
         {
             if (m_DebitAmount < 0.00)
             {
@@ -257,7 +259,7 @@ namespace EsoftPortalMvc.Services.Common
             {
                 if (maindb == null)
                 {
-                    maindb = new Esoft_EstateEntities();
+                    maindb = new EsoftPortalEntities();
                 }
                 //var loanRecord = maindb.tbl_LoanMasterTable.FirstOrDefault(x => x.customerNo == m_AccountNo && x.LoanCode == m_productCode);
                 //if (loanRecord != null)
@@ -377,7 +379,7 @@ namespace EsoftPortalMvc.Services.Common
 
             string mainDbConnectionstring = DbConnector.MainDbConnectionString();
             DateTime serverDate = DateTime.Now;
-            string userLoginCode = UserSession.Current.userDetails.LoginCode;
+            string userLoginCode = UserSession.Current.userDetails.CustomerNo;
             string userMachineName = UserSession.Current.MachineName;
 
             using (SqlConnection sqlConnection = new SqlConnection(mainDbConnectionstring))
@@ -704,7 +706,7 @@ namespace EsoftPortalMvc.Services.Common
             return sqlParameters.ToArray();
         }
 
-       
+
 
         private static void FillInsertAllParameterValues(PostTransactionsViewModel singleTr, SqlParameterCollection parameters, string userLoginCode, string userMachineName)
         {
@@ -810,7 +812,7 @@ namespace EsoftPortalMvc.Services.Common
                 sqlString += " if coalesce(@exist ,'')='' begin insert into tbl_LongRunningProcesses(PostingId,PostingDocid,PostingReferenceNo,PostDate,PostBy,PostAddress)" +
                          " values('" + ValueConverters.format_sql_string(postingKey) + "','" + ValueConverters.format_sql_string(docid) + "','" +
                          ValueConverters.format_sql_string(referenceNo) + "',getdate(),'" +
-                        ValueConverters.format_sql_string(UserSession.Current.userDetails.LoginCode) + "','" +
+                        ValueConverters.format_sql_string(UserSession.Current.userDetails.CustomerNo) + "','" +
                         ValueConverters.format_sql_string(UserSession.Current.MachineName) + "') end " +
                 " select isnull((select top 1 coalesce(fullName,@exist)  from tbl_users where LoginCode= coalesce(@exist,'')),@exist) as PostedBy";
 

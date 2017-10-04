@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EstateManagementMvc;
 
 namespace EsoftPortalMvc.Models
 {
@@ -219,7 +220,7 @@ namespace EsoftPortalMvc.Models
         [Display(Name = "Teller")]
         [Required(ErrorMessage = "Teller is required.")]
         public string User { get; set; }
-               
+
         [Display(Name = "Branch")]
         [Required(ErrorMessage = "Branch is required.")]
         public string Branch { get; set; }
@@ -290,7 +291,7 @@ namespace EsoftPortalMvc.Models
     public class UserAdministrationViewModel
     {
         public tbl_users user { get; set; }
-        public List<BranchSettings> branchSettings { get; set; }
+        public List<BranchSetting> branchSettings { get; set; }
         public List<UserRole> userRoles { get; set; }
     }
 
@@ -398,7 +399,7 @@ namespace EsoftPortalMvc.Models
         public string GlAccountName { get; set; }
         public string SelectedBranchCode { get; set; }
         public List<GlAccountsView> LedgerAccounts { get; set; }
-        public List<BranchSettings> BranchList { get; set; }
+        public List<BranchSetting> BranchList { get; set; }
         public List<SingleGlReportRecord> listLedgerRecord { get; set; }
         [Display(Name = "Start Date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -529,7 +530,7 @@ namespace EsoftPortalMvc.Models
     {
         public List<IncomeExpense> statementList { get; set; }
         public StatementPeriod statementTimeLine { get; set; }
-        public List<BranchSettings> BranchList { get; set; }
+        public List<BranchSetting> BranchList { get; set; }
         public string SelectedBranchCode { get; set; }
         public List<CashBankBalance> generalStatement { get; set; }
         public DateTime? StartDate { get; set; }
@@ -548,7 +549,7 @@ namespace EsoftPortalMvc.Models
     {
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public List<BranchSettings> BranchList { get; set; }
+        public List<BranchSetting> BranchList { get; set; }
         public List<GeneralLedgerTransactionTrail> TransactionTrail { get; set; }
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         public decimal DebitTotal { get; set; }

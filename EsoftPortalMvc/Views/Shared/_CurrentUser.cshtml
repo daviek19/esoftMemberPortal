@@ -6,10 +6,10 @@
 
         <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
             @*<img src=@EsoftPortalMvc.Services.Common.UserSession.Current.UserImage alt ="me" class="online" />*@
-            <img src="http://192.168.0.6/avatars/@(EsoftPortalMvc.Services.Common.UserSession.Current.userDetails.LoginCode).png" alt="me" class="online" />
+            <img src="http://192.168.0.6/avatars/@(EsoftPortalMvc.Services.Common.UserSession.Current.userDetails.CustomerNo).png" alt="me" class="online" />
             @*<img src="~/img/avatars/sunny.png" alt="me" class="online" />*@
             <span>
-                @EsoftPortalMvc.Services.Common.UserSession.Current.userDetails.LoginName
+                @EsoftPortalMvc.Services.Common.UserSession.Current.userDetails.CustomerNo
             
             </span>
             <i class="fa fa-angle-down"></i>
